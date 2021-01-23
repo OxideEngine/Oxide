@@ -1,0 +1,16 @@
+[package]
+name = "oxide_render"
+version = "0.1.0"
+authors = ["Chris Ohk <utilforever@gmail.com>", "Changseo Jang <changseo_jang@korea.ac.kr>", "Yongwook Choi <hyperflow@kakao.com>"]
+description = "Rendering engine of Oxide"
+repository = "https://github.com/utilforever/Oxide"
+readme = "README.md"
+keywords = [ "game", "engine", "renderer", "oxide" ]
+license = "MIT"
+edition = "2018"
+
+[lib]
+name = "oxide_render"
+path = "lib.rs"
+
+[dependencies]
