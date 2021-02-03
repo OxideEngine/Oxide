@@ -9,7 +9,7 @@ pub struct Vector {
 pub struct Matrix {}
 
 trait LengthComputable {
-    fn length(&self) -> f64;
+    fn get_length(&self) -> f64;
 }
 
 trait Rotatable {
@@ -18,7 +18,7 @@ trait Rotatable {
 }
 
 impl LengthComputable for Vector {
-    fn length(&self) -> f64 {
+    fn get_length(&self) -> f64 {
         let squared_length = self.x * self.x + self.y * self.y;
         squared_length.sqrt()
     }
@@ -31,7 +31,7 @@ impl Rotatable for Vector {
     }
 
     fn get_inner_angle(self, _rhs: Vector) -> f64 {
-        (self * _rhs) / (self.length() * _rhs.length())
+        (self * _rhs) / (self.get_length() * _rhs.get_length())
     }
 }
 
@@ -61,7 +61,7 @@ mod vectors {
     #[test]
     fn test_length() {
         let vector: Vector = Vector { x: 3.0, y: 4.0 };
-        assert_eq!(vector.length(), 5.0);
+        assert_eq!(vector.get_length(), 5.0);
     }
 
     #[test]
