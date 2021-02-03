@@ -10,7 +10,6 @@ trait VectorTrait {
 impl VectorTrait for Vector {
     fn length(&self) -> f64 {
         let squared_length = self.x * self.x + self.y * self.y;
-        println!("{}", squared_length);
         squared_length.sqrt()
     }
 }
