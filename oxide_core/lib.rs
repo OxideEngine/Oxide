@@ -1,5 +1,6 @@
 use std::ops;
 
+#[derive(Debug, Clone, Copy, PartialEq)]
 pub struct Vector {
     pub x: f64,
     pub y: f64,
@@ -13,6 +14,7 @@ trait LengthComputable {
 
 trait Rotatable {
     fn rotate(&self, rotation_matrix: &Matrix) -> Matrix;
+    fn get_inner_angle(self, _rhs: Vector) -> f64;
 }
 
 impl LengthComputable for Vector {
@@ -26,6 +28,10 @@ impl Rotatable for Vector {
     fn rotate(&self, rotation_matrix: &Matrix) -> Matrix {
         /* TODO: Can be implemented only after Matrix multiplication is implemented */
         Matrix {}
+    }
+
+    fn get_inner_angle(self, _rhs: Vector) -> f64 {
+        (self * _rhs) / (self.length() * _rhs.length())
     }
 }
 
@@ -74,8 +80,18 @@ mod vectors {
         let vector1: Vector = Vector { x: 3.0, y: 4.0 };
         let vector2: Vector = Vector { x: 1.0, y: 2.0 };
 
-        let inner_product_result = vector1 * vector2;
+        let inner_product = vector1 * vector2;
 
-        assert_eq!(11.0, inner_product_result);
+        assert_eq!(11.0, inner_product);
+    }
+
+    #[test]
+    fn test_get_inner_angle() {
+        let vector1: Vector = Vector { x: 3.0, y: 4.0 };
+        let vector2: Vector = Vector { x: 1.0, y: 2.0 };
+
+        let inner_angle = Vector::get_inner_angle(vector1, vector2);
+
+        assert_eq!(0.9838699100999074, inner_angle);
     }
 }
