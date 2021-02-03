@@ -71,4 +71,14 @@ mod vectors {
         assert_eq!(vector3.x, 4.0);
         assert_eq!(vector3.y, 6.0);
     }
+
+    #[test]
+    fn test_inner_product() {
+        let vector1: Vector = Vector { x: 3.0, y: 4.0 };
+        let vector2: Vector = Vector { x: 1.0, y: 2.0 };
+
+        let vector3 = vector1 * vector2;
+
+        assert_eq!(11, vector3);
+    }
 }
