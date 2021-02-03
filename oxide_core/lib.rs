@@ -10,6 +10,7 @@ trait VectorTrait {
 impl VectorTrait for Vector {
     fn length(&self) -> f64 {
         let squared_length = self.x * self.x + self.y * self.y;
+        println!("{}", squared_length);
         squared_length.sqrt()
     }
 }
@@ -20,7 +21,7 @@ mod tests {
 
     #[test]
     fn test_length() {
-        let vector: Vector = Vector { x: 3.0, y: 5.0 };
+        let vector: Vector = Vector { x: 3.0, y: 4.0 };
         assert_eq!(5.0, vector.length());
     }
 }
