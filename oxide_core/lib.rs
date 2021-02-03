@@ -2,11 +2,26 @@ use std::ops;
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 pub struct Vector {
-    pub x: f64,
-    pub y: f64,
+    x: f64,
+    y: f64,
+    length: f64,
 }
 
 pub struct Matrix {}
+
+impl Vector {
+    pub fn new(x: f64, y: f64) -> Vector {
+        Vector {
+            x: x,
+            y: y,
+            length: (x * x + y * y).sqrt(),
+        }
+    }
+
+    pub fn length(&self) -> f64 {
+        *(&self.get_length())
+    }
+}
 
 trait LengthComputable {
     fn get_length(&self) -> f64;
@@ -39,10 +54,7 @@ impl ops::Add<Vector> for Vector {
     type Output = Vector;
 
     fn add(self, _rhs: Vector) -> Vector {
-        Vector {
-            x: self.x + _rhs.x,
-            y: self.y + _rhs.y,
-        }
+        Vector::new(self.x + _rhs.x, self.y + _rhs.y)
     }
 }
 
@@ -60,14 +72,14 @@ mod vectors {
 
     #[test]
     fn test_length() {
-        let vector: Vector = Vector { x: 3.0, y: 4.0 };
+        let vector: Vector = Vector::new(3.0, 4.0);
         assert_eq!(vector.get_length(), 5.0);
     }
 
     #[test]
     fn test_add() {
-        let vector1: Vector = Vector { x: 3.0, y: 4.0 };
-        let vector2: Vector = Vector { x: 1.0, y: 2.0 };
+        let vector1: Vector = Vector::new(3.0, 4.0);
+        let vector2: Vector = Vector::new(1.0, 2.0);
 
         let add_result = vector1 + vector2;
 
@@ -77,8 +89,8 @@ mod vectors {
 
     #[test]
     fn test_inner_product() {
-        let vector1: Vector = Vector { x: 3.0, y: 4.0 };
-        let vector2: Vector = Vector { x: 1.0, y: 2.0 };
+        let vector1: Vector = Vector::new(3.0, 4.0);
+        let vector2: Vector = Vector::new(1.0, 2.0);
 
         let inner_product = vector1 * vector2;
 
@@ -87,8 +99,8 @@ mod vectors {
 
     #[test]
     fn test_get_inner_angle() {
-        let vector1: Vector = Vector { x: 3.0, y: 4.0 };
-        let vector2: Vector = Vector { x: 1.0, y: 2.0 };
+        let vector1: Vector = Vector::new(3.0, 4.0);
+        let vector2: Vector = Vector::new(1.0, 2.0);
 
         let inner_angle = Vector::get_inner_angle(vector1, vector2);
 
