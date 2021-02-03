@@ -1,3 +1,5 @@
+use std::ops;
+
 pub struct Vector {
     pub x: f64,
     pub y: f64,
@@ -24,6 +26,17 @@ impl Rotatable for Vector {
     fn rotate(&self, rotation_matrix: &Matrix) -> Matrix {
         /* TODO: Can be implemented only after Matrix multiplication implemented */
         Matrix {}
+    }
+}
+
+impl ops::Add<Vector> for Vector {
+    type Output = Vector;
+
+    fn add(self, _rhs: Vector) -> Vector {
+        Vector {
+            x: self.x + _rhs.x,
+            y: self.y + _rhs.y,
+        }
     }
 }
 
