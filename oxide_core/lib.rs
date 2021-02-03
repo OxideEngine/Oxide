@@ -41,13 +41,10 @@ impl ops::Add<Vector> for Vector {
 }
 
 impl ops::Mul<Vector> for Vector {
-    type Output = Vector;
+    type Output = f64;
 
-    fn mul(self, _rhs: Vector) -> Vector {
-        Vector {
-            x: self.x * _rhs.x,
-            y: self.y * _rhs.y,
-        }
+    fn mul(self, _rhs: Vector) -> f64 {
+        self.x * _rhs.x + self.y * _rhs.y
     }
 }
 
@@ -77,8 +74,8 @@ mod vectors {
         let vector1: Vector = Vector { x: 3.0, y: 4.0 };
         let vector2: Vector = Vector { x: 1.0, y: 2.0 };
 
-        let vector3 = vector1 * vector2;
+        let inner_product_result = vector1 * vector2;
 
-        assert_eq!(11, vector3);
+        assert_eq!(11.0, inner_product_result);
     }
 }
