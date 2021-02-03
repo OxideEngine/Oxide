@@ -40,6 +40,17 @@ impl ops::Add<Vector> for Vector {
     }
 }
 
+impl ops::Mul<Vector> for Vector {
+    type Output = Vector;
+
+    fn mul(self, _rhs: Vector) -> Vector {
+        Vector {
+            x: self.x * _rhs.x,
+            y: self.y * _rhs.y,
+        }
+    }
+}
+
 #[cfg(test)]
 mod vectors {
     use super::*;
