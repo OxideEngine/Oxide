@@ -3,14 +3,26 @@ pub struct Vector {
     pub y: f64,
 }
 
-trait VectorTrait {
+pub struct Matrix {}
+
+trait lengthComputable {
     fn length(&self) -> f64;
 }
 
-impl VectorTrait for Vector {
+trait Rotatable {
+    fn rotate(&self, rotation_matrix: &Matrix) -> Matrix;
+}
+
+impl lengthComputable for Vector {
     fn length(&self) -> f64 {
         let squared_length = self.x * self.x + self.y * self.y;
         squared_length.sqrt()
+    }
+}
+
+impl Rotatable for Vector {
+    fn rotate(&self, rotation_matrix: &Matrix) -> Matrix {
+        Matrix {}
     }
 }
 
