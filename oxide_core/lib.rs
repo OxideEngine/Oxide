@@ -47,8 +47,7 @@ mod vectors {
     #[test]
     fn test_length() {
         let vector: Vector = Vector { x: 3.0, y: 4.0 };
-        /* TODO: Change order of args */
-        assert_eq!(5.0, vector.length());
+        assert_eq!(vector.length(), 5.0);
     }
 
     #[test]
