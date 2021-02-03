@@ -73,6 +73,12 @@ mod vectors {
     #[test]
     fn test_length() {
         let vector: Vector = Vector::new(3.0, 4.0);
+        assert_eq!(vector.length, 5.0);
+    }
+
+    #[test]
+    fn test_get_length() {
+        let vector: Vector = Vector::new(3.0, 4.0);
         assert_eq!(vector.get_length(), 5.0);
     }
 
