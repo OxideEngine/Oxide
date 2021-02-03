@@ -24,7 +24,7 @@ impl LengthComputable for Vector {
 
 impl Rotatable for Vector {
     fn rotate(&self, rotation_matrix: &Matrix) -> Matrix {
-        /* TODO: Can be implemented only after Matrix multiplication implemented */
+        /* TODO: Can be implemented only after Matrix multiplication is implemented */
         Matrix {}
     }
 }
