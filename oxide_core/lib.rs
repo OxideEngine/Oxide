@@ -5,7 +5,7 @@ pub struct Vector {
 
 pub struct Matrix {}
 
-trait lengthComputable {
+trait LengthComputable {
     fn length(&self) -> f64;
 }
 
@@ -13,7 +13,7 @@ trait Rotatable {
     fn rotate(&self, rotation_matrix: &Matrix) -> Matrix;
 }
 
-impl lengthComputable for Vector {
+impl LengthComputable for Vector {
     fn length(&self) -> f64 {
         let squared_length = self.x * self.x + self.y * self.y;
         squared_length.sqrt()
