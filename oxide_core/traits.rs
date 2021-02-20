@@ -9,6 +9,7 @@ pub trait Float:
   + PartialOrd
   + One
   + Zero
+  + Sqrt
   + Min
   + Max
   + Powf
@@ -38,6 +39,7 @@ impl<T> Float for T where
     + PartialOrd
     + One
     + Zero
+    + Sqrt
     + Min
     + Max
     + Powf
