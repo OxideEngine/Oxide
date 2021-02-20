@@ -10,7 +10,7 @@ license = "MIT"
 edition = "2018"
 
 [lib]
-name = "oxide_render"
+name = "oxide_core"
 path = "lib.rs"
 
 [dependencies]
