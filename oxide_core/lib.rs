@@ -1,11 +1,9 @@
 pub mod vector;
 pub mod vector2;
 
+pub mod matrix;
+
 #[cfg(test)]
 mod test {
-    #[test]
-    fn test_add() {
-        use super::*;
-        assert_eq!(add(3, 4), 7);
-    }
+    use super::*;
 }
