@@ -6,14 +6,22 @@ pub struct Vector2 {
     pub y: i32,
 }
 
-impl vector::LengthComputable for Vector2 {
+impl Vector2 {}
+
+impl vector::Length for Vector2 {
     fn get_length(&self) -> i32 {
         self.x * self.x + self.y * self.y
     }
 }
 
-impl vector::Rotatable for Vector2 {
-    fn rotate(&self, rotationMatrix: matrix::Matrix) -> Self {
+impl vector::Rotate for Vector2 {
+    fn rotate(&self, rotationMatrix: matrix::Matrix) -> Vector2 {
         Vector2 { x: 0, y: 0 }
+    }
+}
+
+impl vector::InnerProduct for Vector2 {
+    fn inner_product(&self, _rhs: Vector2) -> i32 {
+        self.x * _rhs.x + self.y * _rhs.y
     }
 }
