@@ -10,4 +10,7 @@ impl vector::Length for Vector3 {
     fn get_squared_length(&self) -> f32 {
         self.x * self.x + self.y * self.y + self.z * self.z
     }
+    fn get_length(&self) -> f32 {
+        self.get_squared_length().sqrt()
+    }
 }
