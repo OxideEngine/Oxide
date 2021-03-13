@@ -1,7 +1,7 @@
 use crate::matrix;
 
 pub trait Length {
-    fn get_length(&self) -> f32;
+    fn get_squared_length(&self) -> f32;
 }
 
 pub trait Rotate {
