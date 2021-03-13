@@ -28,3 +28,12 @@ impl vector::InnerProduct for Vector2 {
         self.x * _rhs.x + self.y * _rhs.y
     }
 }
+
+impl vector::Scale for Vector2 {
+    fn scale(&self, multiplier: f32) -> Vector2 {
+        Vector2 {
+            x: self.x * multiplier,
+            y: self.y * multiplier,
+        }
+    }
+}
