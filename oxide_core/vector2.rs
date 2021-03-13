@@ -9,7 +9,7 @@ pub struct Vector2 {
 impl Vector2 {}
 
 impl vector::Length for Vector2 {
-    fn get_length(&self) -> f32 {
+    fn get_squared_length(&self) -> f32 {
         self.x * self.x + self.y * self.y
     }
 }
