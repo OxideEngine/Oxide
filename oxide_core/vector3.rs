@@ -14,3 +14,9 @@ impl vector::Length for Vector3 {
         self.get_squared_length().sqrt()
     }
 }
+
+impl vector::InnerProduct for Vector3 {
+    fn inner_product(&self, _rhs) -> f32 {
+        self.x * _rhs.x + self.y * _rhs.y
+    }
+}
