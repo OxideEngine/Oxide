@@ -12,6 +12,9 @@ impl vector::Length for Vector2 {
     fn get_squared_length(&self) -> f32 {
         self.x * self.x + self.y * self.y
     }
+    fn get_length(&self) -> f32 {
+        self.get_squared_length().sqrt()
+    }
 }
 
 impl vector::Rotate for Vector2 {
