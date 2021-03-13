@@ -18,7 +18,7 @@ impl vector::Length for Vector2 {
 }
 
 impl vector::Rotate for Vector2 {
-    fn rotate(&self, rotationMatrix: matrix::Matrix) -> Vector2 {
+    fn rotate(&self, rotation_matrix: matrix::Matrix) -> Vector2 {
         Vector2 { x: 0.0, y: 0.0 }
     }
 }

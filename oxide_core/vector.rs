@@ -7,7 +7,7 @@ pub trait Length {
 
 pub trait Rotate {
     // TODO: Can be implemented only after matrix implemented
-    fn rotate(&self, rotationMatrix: matrix::Matrix) -> Self;
+    fn rotate(&self, rotation_matrix: matrix::Matrix) -> Self;
 }
 
 pub trait InnerProduct {
