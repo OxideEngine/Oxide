@@ -20,3 +20,13 @@ impl vector::InnerProduct for Vector3 {
         self.x * _rhs.x + self.y * _rhs.y
     }
 }
+
+impl vector::Scale for Vector3 {
+    fn scale(&self, multiplier: f32) -> Vector3 {
+        Vector3 {
+            x: self.x * multiplier,
+            y: self.y * multiplier,
+            z: self.z * multiplier,
+        }
+    }
+}
