@@ -16,7 +16,7 @@ impl vector::Length for Vector3 {
 }
 
 impl vector::InnerProduct for Vector3 {
-    fn inner_product(&self, _rhs) -> f32 {
+    fn inner_product(&self, _rhs: Self) -> f32 {
         self.x * _rhs.x + self.y * _rhs.y
     }
 }
