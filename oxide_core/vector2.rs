@@ -49,3 +49,14 @@ impl ops::Add<Vector2> for Vector2 {
         }
     }
 }
+
+impl ops::Sub<Vector2> for Vector2 {
+    type Output = Vector2;
+
+    fn sub(self, _rhs: Vector2) -> Vector2 {
+        Vector2 {
+            x: self.x - _rhs.x,
+            y: self.y - _rhs.y,
+        }
+    }
+}
