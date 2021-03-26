@@ -1,42 +1,48 @@
 use crate::matrix;
 use crate::vector;
+use crate::traits::Float;
 
-pub struct Vector2 {
-    pub x: f32,
-    pub y: f32,
+#[derive(Copy, Clone, PartialEq, Debug)]
+pub struct Vector2<T>
+where
+    T: Float,
+{
+    pub x: T,
+    pub y: T,
 }
 
-impl Vector2 {}
-
-impl vector::Add for Vector2 {
+impl<T> vector::Add for Vector2<T>
+where
+    T: Float,
+{
     fn add(&self, _rhs: Self) -> Self {
         Vector2 { x: self.x + _rhs.x, y: self.y + _rhs.y}
     }
 }
 
-impl vector::Length for Vector2 {
-    fn get_squared_length(&self) -> f32 {
+impl<T> vector::Length for Vector2<T> {
+    fn get_squared_length(&self) -> T {
         self.x * self.x + self.y * self.y
     }
-    fn get_length(&self) -> f32 {
+    fn get_length(&self) -> T {
         self.get_squared_length().sqrt()
     }
 }
 
-impl vector::Rotate for Vector2 {
+impl<T> vector::Rotate for Vector2<T> {
     fn rotate(&self, rotation_matrix: matrix::Matrix) -> Vector2 {
         Vector2 { x: 0.0, y: 0.0 }
     }
 }
 
-impl vector::InnerProduct for Vector2 {
-    fn inner_product(&self, _rhs: Vector2) -> f32 {
+impl<T> vector::InnerProduct for Vector2<T> {
+    fn inner_product(&self, _rhs: Vector2) -> T {
         self.x * _rhs.x + self.y * _rhs.y
     }
 }
 
-impl vector::Scale for Vector2 {
-    fn scale(&self, multiplier: f32) -> Vector2 {
+impl<T> vector::Scale for Vector2<T> {
+    fn scale(&self, multiplier: T) -> Vector2 {
         Vector2 {
             x: self.x * multiplier,
             y: self.y * multiplier,

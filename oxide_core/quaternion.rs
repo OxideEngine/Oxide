@@ -2,7 +2,6 @@ use crate::traits::Float;
 use crate::vector::*;
 use crate::vector3::Vector3;
 
-
 #[derive(Copy, Clone, PartialEq, Debug)]
 pub struct Quaternion<T>
 where
@@ -210,7 +209,7 @@ mod test {
         let zero_vector = Vector3 {
             x: 0.0,
             y: 0.0,
-            z: 0.0
+            z: 0.0,
         };
         assert_eq!(id.get_vector_part(), zero_vector);
     }
@@ -260,7 +259,11 @@ mod test {
 
     #[test]
     fn test_axis_angle() {
-        let axis: Vector3<f32> = Vector3 {x: 1.0, y: 1.0, z: 1.0};
+        let axis: Vector3<f32> = Vector3 {
+            x: 1.0,
+            y: 1.0,
+            z: 1.0,
+        };
         let q: Quaternion<f32> = axis_angle(axis.normalized(), ::std::f32::consts::PI);
 
         assert!((square_len(q) - 1.0).abs() <= ::std::f32::EPSILON);
