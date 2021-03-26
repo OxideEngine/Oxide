@@ -1,8 +1,16 @@
 use crate::matrix;
 
-pub trait Length {
-    fn get_squared_length(&self) -> f32;
-    fn get_length(&self) -> f32;
+pub trait Add {
+    fn add(&self, _rhs: Self) -> Self;
+}
+
+pub trait Length<T> {
+    fn get_squared_length(&self) -> T;
+    fn get_length(&self) -> T;
+}
+
+pub trait Normalized {
+    fn normalized(&self) -> Self;
 }
 
 pub trait Rotate {
@@ -10,15 +18,18 @@ pub trait Rotate {
     fn rotate(&self, rotation_matrix: matrix::Matrix) -> Self;
 }
 
-pub trait InnerProduct {
-    fn inner_product(&self, _rhs: Self) -> f32;
+pub trait InnerProduct<T> {
+    fn inner_product(&self, _rhs: Self) -> T;
 }
 
-pub trait OuterProduct {
-    // TODO: Can be implemented only after matrix implemented
-    fn outer_product(&self, _rhs: Self) -> matrix::Matrix;
+pub trait OuterProduct<T> {
+    fn outer_product(&self, _rhs: Self) -> Self;
 }
 
-pub trait Scale {
-    fn scale(&self, multiplier: f32) -> Self;
+pub trait Scale<T> {
+    fn scale(&self, multiplier: T) -> Self;
+}
+
+pub trait Negate {
+    fn neg(&self) -> Self;
 }

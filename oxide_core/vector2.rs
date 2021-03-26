@@ -8,6 +8,12 @@ pub struct Vector2 {
 
 impl Vector2 {}
 
+impl vector::Add for Vector2 {
+    fn add(&self, _rhs: Self) -> Self {
+        Vector2 { x: self.x + _rhs.x, y: self.y + _rhs.y}
+    }
+}
+
 impl vector::Length for Vector2 {
     fn get_squared_length(&self) -> f32 {
         self.x * self.x + self.y * self.y
