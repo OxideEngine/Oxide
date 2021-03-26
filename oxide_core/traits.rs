@@ -441,31 +441,46 @@ impl From for f64 {
 #[cfg(test)]
 mod test {
     use super::*;
+
     #[test]
     fn test_f32_sqrt() {
         let a = 3.0f32;
         let b = <f32 as Sqrt>::sqrt(9.0f32);
-        assert_eq!(b, a);
+        assert!((b - a).abs() <= ::std::f32::EPSILON);
     }
 
     #[test]
     fn test_f32_square() {
         let a = <f32 as Powf>::powf(3f32, 2f32);
         let b = 9f32;
-        assert_eq!(a, b);
+        assert!((b - a).abs() <= ::std::f32::EPSILON);
+    }
+
+    #[test]
+    fn test_f64_sqrt() {
+        let a = 3.0f64;
+        let b = <f64 as Sqrt>::sqrt(9.0f64);
+        assert!((b - a).abs() <= ::std::f64::EPSILON);
+    }
+
+    #[test]
+    fn test_f65_square() {
+        let a = <f64 as Powf>::powf(3f64, 2f64);
+        let b = 9.0f64;
+        assert!((b - a).abs() <= ::std::f64::EPSILON);
     }
 
     #[test]
     fn test_f32_deg_to_rad() {
-        let degree = 23.0f32;
+        let degree = 60.0f32;
         let radian = degree.deg_to_rad();
-        assert!((radian - 0.401425).abs() > ::std::f32::EPSILON);
+        assert!((radian - ::std::f32::consts::FRAC_PI_3).abs() <= ::std::f32::EPSILON);
     }
 
     #[test]
     fn test_f64_deg_to_rad() {
         let degree = 60.0f64;
         let radian = degree.deg_to_rad();
-        assert!((radian - 1.047197).abs() > ::std::f64::EPSILON);
+        assert!((radian - ::std::f64::consts::FRAC_PI_3).abs() <= ::std::f64::EPSILON);
     }
 }
