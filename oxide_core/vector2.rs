@@ -1,5 +1,6 @@
 use crate::matrix;
 use crate::vector;
+use std::ops;
 
 pub struct Vector2 {
     pub x: f32,
@@ -34,6 +35,17 @@ impl vector::Scale for Vector2 {
         Vector2 {
             x: self.x * multiplier,
             y: self.y * multiplier,
+        }
+    }
+}
+
+impl ops::Add<Vector2> for Vector2 {
+    type Output = Vector2;
+
+    fn add(self, _rhs: Vector2) -> Vector2 {
+        Vector2 {
+            x: self.x + _rhs.x,
+            y: self.y + _rhs.y,
         }
     }
 }
