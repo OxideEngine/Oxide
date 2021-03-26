@@ -42,3 +42,15 @@ impl vector::Scale for Vector3 {
         }
     }
 }
+
+impl ops::Add<Vector3> for Vector3 {
+    type Output = Vector3;
+
+    fn add(self, _rhs: Self) -> Vector3 {
+        Vector3 {
+            x: self.x + _rhs.x,
+            y: self.y + _rhs.y,
+            z: self.z + _rhs.z,
+        }
+    }
+}
