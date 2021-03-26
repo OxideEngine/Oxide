@@ -6,6 +6,4 @@ pub mod vector;
 pub mod vector3;
 
 #[cfg(test)]
-mod test {
-    use super::*;
-}
+mod test {}
