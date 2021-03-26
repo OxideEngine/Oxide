@@ -1,5 +1,7 @@
+use crate::matrix;
 use crate::traits::Float;
 use crate::vector;
+use std::ops;
 
 #[derive(Copy, Clone, PartialEq, Debug)]
 pub struct Vector3<T>
@@ -94,6 +96,36 @@ where
             x: self.x.neg(),
             y: self.y.neg(),
             z: self.z.neg(),
+        }
+    }
+}
+
+impl<T> ops::Add<Vector3<T>> for Vector3<T>
+where
+    T: Float,
+{
+    type Output = Vector3<T>;
+
+    fn add(self, _rhs: Self) -> Self {
+        Vector3 {
+            x: self.x + _rhs.x,
+            y: self.y + _rhs.y,
+            z: self.z + _rhs.z,
+        }
+    }
+}
+
+impl<T> ops::Sub<Vector3<T>> for Vector3<T>
+where
+    T: Float,
+{
+    type Output = Vector3<T>;
+
+    fn sub(self, _rhs: Self) -> Self {
+        Vector3 {
+            x: self.x - _rhs.x,
+            y: self.y - _rhs.y,
+            z: self.z - _rhs.z,
         }
     }
 }

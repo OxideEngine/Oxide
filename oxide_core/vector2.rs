@@ -1,6 +1,7 @@
 use crate::matrix;
 use crate::vector;
 use crate::traits::Float;
+use std::ops;
 
 #[derive(Copy, Clone, PartialEq, Debug)]
 pub struct Vector2<T>
@@ -46,6 +47,28 @@ impl<T> vector::Scale for Vector2<T> {
         Vector2 {
             x: self.x * multiplier,
             y: self.y * multiplier,
+        }
+    }
+}
+
+impl ops::Add<Vector2> for Vector2 {
+    type Output = Vector2;
+
+    fn add(self, _rhs: Vector2) -> Vector2 {
+        Vector2 {
+            x: self.x + _rhs.x,
+            y: self.y + _rhs.y,
+        }
+    }
+}
+
+impl ops::Sub<Vector2> for Vector2 {
+    type Output = Vector2;
+
+    fn sub(self, _rhs: Vector2) -> Vector2 {
+        Vector2 {
+            x: self.x - _rhs.x,
+            y: self.y - _rhs.y,
         }
     }
 }
