@@ -1,4 +1,6 @@
+use crate::matrix;
 use crate::vector;
+use std::ops;
 
 pub struct Vector3 {
     pub x: f32,
@@ -12,6 +14,16 @@ impl vector::Length for Vector3 {
     }
     fn get_length(&self) -> f32 {
         self.get_squared_length().sqrt()
+    }
+}
+
+impl vector::Rotate for Vector3 {
+    fn rotate(&self, rotation_matrix: matrix::Matrix) -> Vector3 {
+        Vector3 {
+            x: 0.0,
+            y: 0.0,
+            z: 0.0,
+        }
     }
 }
 
