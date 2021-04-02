@@ -20,7 +20,7 @@ mod test {
             y: 4.0,
             z: 5.0,
         };
-        let res: f32 = 7.0710678118654752440084436210485;
+        let res: f32 = 7.071_068;
         assert_eq!(res, new_vector.get_length());
     }
 
