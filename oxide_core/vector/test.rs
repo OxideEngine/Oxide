@@ -36,4 +36,12 @@ mod test {
         let res_vector = vector2::Vector2 { x: 6.0, y: 11.0 };
         assert_eq!(res_vector, new_vector_1 + new_vector_2);
     }
+
+    #[test]
+    fn test_vector2_sub() {
+        let new_vector_1 = vector2::Vector2 { x: 3.0, y: 4.0 };
+        let new_vector_2 = vector2::Vector2 { x: 3.0, y: 7.0 };
+        let res_vector = vector2::Vector2 { x: 0.0, y: -3.0 };
+        assert_eq!(res_vector, new_vector_1 - new_vector_2);
+    }
 }
