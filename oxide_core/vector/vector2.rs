@@ -26,7 +26,7 @@ impl vector::Rotate for Vector2 {
 }
 
 impl vector::InnerProduct for Vector2 {
-    fn inner_product(&self, _rhs: Vector2) -> f32 {
+    fn inner_product(&self, _rhs: &Self) -> f32 {
         self.x * _rhs.x + self.y * _rhs.y
     }
 }
