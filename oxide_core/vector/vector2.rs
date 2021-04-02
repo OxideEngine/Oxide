@@ -2,6 +2,7 @@ use crate::matrix;
 use crate::vector;
 use std::ops;
 
+#[derive(PartialEq, Debug)]
 pub struct Vector2 {
     pub x: f32,
     pub y: f32,
