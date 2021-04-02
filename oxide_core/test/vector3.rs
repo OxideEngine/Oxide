@@ -74,4 +74,23 @@ mod test {
         };
         assert_eq!(res_vector, new_vector_1 + new_vector_2);
     }
+    #[test]
+    fn sub() {
+        let new_vector_1 = vector3::Vector3 {
+            x: 3.0,
+            y: 4.0,
+            z: 5.0,
+        };
+        let new_vector_2 = vector3::Vector3 {
+            x: 3.0,
+            y: 7.0,
+            z: 11.0,
+        };
+        let res_vector = vector3::Vector3 {
+            x: 0.0,
+            y: -3.0,
+            z: -6.0,
+        };
+        assert_eq!(res_vector, new_vector_1 - new_vector_2);
+    }
 }
