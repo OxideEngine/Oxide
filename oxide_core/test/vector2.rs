@@ -1,6 +1,5 @@
 #[cfg(test)]
 mod test {
-    use crate::vector::vector2;
     use crate::vector::*;
 
     #[test]
