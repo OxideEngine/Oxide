@@ -10,7 +10,7 @@ mod test {
             z: 5.0,
         };
         let res: f32 = 50.0;
-        assert_eq!(res, new_vector.get_squared_length());
+        assert_delta!(res, new_vector.get_squared_length(), f32::EPSILON);
     }
 
     #[test]
@@ -21,7 +21,7 @@ mod test {
             z: 5.0,
         };
         let res: f32 = 7.071_068;
-        assert_eq!(res, new_vector.get_length());
+        assert_delta!(res, new_vector.get_length(), f32::EPSILON);
     }
 
     #[test]
@@ -37,7 +37,7 @@ mod test {
             z: 11.0,
         };
         let res: f32 = 92.0;
-        assert_eq!(res, new_vector_1.inner_product(new_vector_2));
+        assert_delta!(res, new_vector_1.inner_product(&new_vector_2), f32::EPSILON);
     }
 
     #[test]
