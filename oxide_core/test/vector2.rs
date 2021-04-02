@@ -22,7 +22,7 @@ mod test {
     }
 
     #[test]
-    fn scale() {
+    fn scale_3() {
         let new_vector = vector2::Vector2 { x: 3.0, y: 4.0 };
         let res_vector = vector2::Vector2 { x: 9.0, y: 12.0 };
         assert_eq!(res_vector, new_vector.scale(3.0));
