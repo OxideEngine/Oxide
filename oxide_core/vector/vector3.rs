@@ -30,7 +30,7 @@ impl vector::Rotate for Vector3 {
 
 impl vector::InnerProduct for Vector3 {
     fn inner_product(&self, _rhs: Self) -> f32 {
-        self.x * _rhs.x + self.y * _rhs.y
+        self.x * _rhs.x + self.y * _rhs.y + self.z * _rhs.z
     }
 }
 
