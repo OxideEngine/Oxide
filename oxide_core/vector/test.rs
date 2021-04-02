@@ -28,4 +28,12 @@ mod test {
         let res_vector = vector2::Vector2 { x: 9.0, y: 12.0 };
         assert_eq!(res_vector, new_vector.scale(3.0));
     }
+
+    #[test]
+    fn test_vector2_add() {
+        let new_vector_1 = vector2::Vector2 { x: 3.0, y: 4.0 };
+        let new_vector_2 = vector2::Vector2 { x: 3.0, y: 7.0 };
+        let res_vector = vector2::Vector2 { x: 6.0, y: 11.0 };
+        assert_eq!(res_vector, new_vector_1 + new_vector_2);
+    }
 }
