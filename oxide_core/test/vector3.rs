@@ -9,7 +9,7 @@ mod test {
             y: 4.0,
             z: 5.0,
         };
-        let res = 50.0;
+        let res: f32 = 50.0;
         assert_eq!(res, new_vector.get_squared_length());
     }
 
@@ -20,7 +20,7 @@ mod test {
             y: 4.0,
             z: 5.0,
         };
-        let res = 7.0710678118654752440084436210485;
+        let res: f32 = 7.0710678118654752440084436210485;
         assert_eq!(res, new_vector.get_length());
     }
 
@@ -36,7 +36,7 @@ mod test {
             y: 7.0,
             z: 11.0,
         };
-        let res = 92.0;
+        let res: f32 = 92.0;
         assert_eq!(res, new_vector_1.inner_product(new_vector_2));
     }
 
