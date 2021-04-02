@@ -1,4 +1,5 @@
 use crate::matrix;
+pub mod test;
 pub mod vector2;
 pub mod vector3;
 
