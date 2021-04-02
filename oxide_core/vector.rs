@@ -1,4 +1,6 @@
 use crate::matrix;
+pub mod vector2;
+pub mod vector3;
 
 pub trait Length {
     fn get_squared_length(&self) -> f32;
