@@ -17,8 +17,7 @@ pub trait InnerProduct {
 }
 
 pub trait OuterProduct {
-    // TODO: Can be implemented only after matrix implemented
-    fn outer_product(&self, _rhs: &Self) -> matrix::Matrix;
+    fn outer_product(&self, _rhs: &Self) -> Self;
 }
 
 pub trait Scale {
