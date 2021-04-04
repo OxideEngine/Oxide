@@ -1,5 +1,6 @@
 use crate::matrix;
 use crate::vector;
+use crate::vector::*;
 use std::ops;
 
 #[derive(PartialEq, Debug)]
@@ -19,12 +20,7 @@ impl vector::Length for Vector3 {
     }
 
     fn normalize(&self) -> Self {
-        let length = self.get_length();
-        Self {
-            x: self.x / length,
-            y: self.y / length,
-            z: self.z / length,
-        }
+        self.scale(self.get_length().recip())
     }
 }
 
