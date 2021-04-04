@@ -16,7 +16,8 @@ mod test {
             z: 5.0,
         };
         let tar: f32 = 50.0;
-        assert_approx_eq!(tar, new_vector.get_squared_length());
+        let res = new_vector.get_squared_length();
+        assert_approx_eq!(tar, res);
     }
 
     #[test]
@@ -27,7 +28,8 @@ mod test {
             z: 5.0,
         };
         let tar: f32 = 7.071_068;
-        assert_approx_eq!(tar, new_vector.get_length());
+        let res = new_vector.get_length();
+        assert_approx_eq!(tar, res);
     }
 
     #[test]
@@ -43,7 +45,8 @@ mod test {
             z: 11.0,
         };
         let tar: f32 = 92.0;
-        assert_approx_eq!(tar, new_vector_1.inner_product(&new_vector_2));
+        let res = new_vector_1.inner_product(&new_vector_2);
+        assert_approx_eq!(tar, res);
     }
 
     #[test]
@@ -58,7 +61,8 @@ mod test {
             y: 12.0,
             z: 15.0,
         };
-        assert_eq!(tar_vector, new_vector.scale(3.0));
+        let res_vector = new_vector.scale(3.0);
+        assert_vector3_approx_eq(&tar_vector, &res_vector);
     }
 
     #[test]
@@ -78,7 +82,8 @@ mod test {
             y: 11.0,
             z: 16.0,
         };
-        assert_eq!(tar_vector, new_vector_1 + new_vector_2);
+        let res_vector = new_vector_1 + new_vector_2;
+        assert_vector3_approx_eq(&tar_vector, &res_vector);
     }
     #[test]
     fn sub() {
@@ -97,7 +102,8 @@ mod test {
             y: -3.0,
             z: -6.0,
         };
-        assert_eq!(tar_vector, new_vector_1 - new_vector_2);
+        let res_vector = new_vector_1 - new_vector_2;
+        assert_vector3_approx_eq(&tar_vector, &res_vector);
     }
 
     #[test]
