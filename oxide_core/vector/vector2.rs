@@ -29,8 +29,8 @@ impl vector::Length for Vector2 {
 }
 
 impl vector::Rotate for Vector2 {
-    fn rotate(&self, _rotation_matrix: matrix::Matrix) -> Vector2 {
-        Vector2 { x: 0.0, y: 0.0 }
+    fn rotate(&self, _rotation_matrix: matrix::Matrix) -> Self {
+        Self { x: 0.0, y: 0.0 }
     }
 }
 
@@ -41,8 +41,8 @@ impl vector::InnerProduct for Vector2 {
 }
 
 impl vector::Scale for Vector2 {
-    fn scale(&self, multiplier: f32) -> Vector2 {
-        Vector2 {
+    fn scale(&self, multiplier: f32) -> Self {
+        Self {
             x: self.x * multiplier,
             y: self.y * multiplier,
         }
