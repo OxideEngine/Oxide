@@ -2,6 +2,12 @@
 mod test {
     use crate::vector::*;
 
+    fn assert_vector3_approx_eq(a: &vector3::Vector3, b: &vector3::Vector3) {
+        assert_approx_eq!(a.x, b.x);
+        assert_approx_eq!(a.y, b.y);
+        assert_approx_eq!(a.z, b.z);
+    }
+
     #[test]
     fn get_squared_length() {
         let new_vector = vector3::Vector3 {
@@ -9,8 +15,8 @@ mod test {
             y: 4.0,
             z: 5.0,
         };
-        let res: f32 = 50.0;
-        assert_approx_eq!(res, new_vector.get_squared_length());
+        let tar: f32 = 50.0;
+        assert_approx_eq!(tar, new_vector.get_squared_length());
     }
 
     #[test]
@@ -20,8 +26,8 @@ mod test {
             y: 4.0,
             z: 5.0,
         };
-        let res: f32 = 7.071_068;
-        assert_approx_eq!(res, new_vector.get_length());
+        let tar: f32 = 7.071_068;
+        assert_approx_eq!(tar, new_vector.get_length());
     }
 
     #[test]
@@ -36,8 +42,8 @@ mod test {
             y: 7.0,
             z: 11.0,
         };
-        let res: f32 = 92.0;
-        assert_approx_eq!(res, new_vector_1.inner_product(&new_vector_2));
+        let tar: f32 = 92.0;
+        assert_approx_eq!(tar, new_vector_1.inner_product(&new_vector_2));
     }
 
     #[test]
@@ -47,12 +53,12 @@ mod test {
             y: 4.0,
             z: 5.0,
         };
-        let res_vector = vector3::Vector3 {
+        let tar_vector = vector3::Vector3 {
             x: 9.0,
             y: 12.0,
             z: 15.0,
         };
-        assert_eq!(res_vector, new_vector.scale(3.0));
+        assert_eq!(tar_vector, new_vector.scale(3.0));
     }
 
     #[test]
@@ -67,12 +73,12 @@ mod test {
             y: 7.0,
             z: 11.0,
         };
-        let res_vector = vector3::Vector3 {
+        let tar_vector = vector3::Vector3 {
             x: 6.0,
             y: 11.0,
             z: 16.0,
         };
-        assert_eq!(res_vector, new_vector_1 + new_vector_2);
+        assert_eq!(tar_vector, new_vector_1 + new_vector_2);
     }
     #[test]
     fn sub() {
@@ -86,11 +92,28 @@ mod test {
             y: 7.0,
             z: 11.0,
         };
-        let res_vector = vector3::Vector3 {
+        let tar_vector = vector3::Vector3 {
             x: 0.0,
             y: -3.0,
             z: -6.0,
         };
-        assert_eq!(res_vector, new_vector_1 - new_vector_2);
+        assert_eq!(tar_vector, new_vector_1 - new_vector_2);
+    }
+
+    #[test]
+    fn normalize() {
+        let new_vector = vector3::Vector3 {
+            x: 3.0,
+            y: 4.0,
+            z: 5.0,
+        };
+        let tar_vector = vector3::Vector3 {
+            x: 0.42426407871192851464050661726291,
+            y: 0.56568542494923801952067548968388,
+            z: 0.70710678118654752440084436210485,
+        };
+        let res_vector = new_vector.normalize();
+        assert_vector3_approx_eq(&tar_vector, &res_vector);
+        assert_approx_eq!(1.0, res_vector.get_length());
     }
 }
