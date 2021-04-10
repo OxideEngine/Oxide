@@ -1,9 +1,10 @@
 use crate::matrix;
 use crate::vector;
 use crate::vector::*;
+use serde::{Deserialize, Serialize};
 use std::ops;
 
-#[derive(PartialEq, Debug)]
+#[derive(PartialEq, Debug, Serialize, Deserialize)]
 pub struct Vector2 {
     pub x: f32,
     pub y: f32,
