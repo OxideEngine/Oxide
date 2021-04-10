@@ -48,6 +48,10 @@ impl vector::Scale for Vector3 {
             z: self.z * multiplier,
         }
     }
+
+    fn negate(&self) -> Self {
+        self.scale(-1.0)
+    }
 }
 
 impl ops::Add<Vector3> for Vector3 {

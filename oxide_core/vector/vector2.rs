@@ -30,6 +30,10 @@ impl vector::Scale for Vector2 {
             y: self.y * multiplier,
         }
     }
+
+    fn negate(&self) -> Self {
+        self.scale(-1.0)
+    }
 }
 
 impl vector::Length for Vector2 {
