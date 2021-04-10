@@ -17,6 +17,7 @@ pub trait OuterProduct {
 
 pub trait Scale {
     fn scale(&self, multiplier: f32) -> Self;
+    fn negate(&self) -> Self;
 }
 
 pub trait Length {
