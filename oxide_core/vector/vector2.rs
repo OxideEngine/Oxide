@@ -22,6 +22,22 @@ impl vector::InnerProduct for Vector2 {
     }
 }
 
+impl vector::OuterProduct for Vector2 {
+    fn outer_product(&self, _rhs: &Self) -> vector3::Vector3 {
+        let self_vec3 = vector3::Vector3 {
+            x: self.x,
+            y: self.y,
+            z: 0.0,
+        };
+        let rhs_vec3 = vector3::Vector3 {
+            x: _rhs.x,
+            y: _rhs.y,
+            z: 0.0,
+        };
+        self_vec3.outer_product(&rhs_vec3)
+    }
+}
+
 impl vector::Scale for Vector2 {
     fn scale(&self, multiplier: f32) -> Self {
         Self {

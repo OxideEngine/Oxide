@@ -13,7 +13,7 @@ pub trait InnerProduct {
 }
 
 pub trait OuterProduct {
-    fn outer_product(&self, _rhs: &Self) -> Self;
+    fn outer_product(&self, _rhs: &Self) -> vector3::Vector3;
 }
 
 pub trait Scale {

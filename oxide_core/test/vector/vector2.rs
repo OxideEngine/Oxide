@@ -1,11 +1,7 @@
 #[cfg(test)]
 mod test {
+    use crate::test::utils::*;
     use crate::vector::*;
-
-    fn assert_vector2_approx_eq(a: &vector2::Vector2, b: &vector2::Vector2) {
-        assert_approx_eq!(a.x, b.x);
-        assert_approx_eq!(a.y, b.y);
-    }
 
     #[test]
     fn get_squared_length() {
@@ -30,6 +26,19 @@ mod test {
         let tar: f32 = 37.0;
         let res = new_vector_1.inner_product(&new_vector_2);
         assert_approx_eq!(tar, res);
+    }
+
+    #[test]
+    fn outer_product() {
+        let new_vector_1 = vector2::Vector2 { x: 3.0, y: 4.0 };
+        let new_vector_2 = vector2::Vector2 { x: 3.0, y: 7.0 };
+        let tar_vector = vector3::Vector3 {
+            x: 0.0,
+            y: 0.0,
+            z: 9.0,
+        };
+        let res_vector = new_vector_1.outer_product(&new_vector_2);
+        assert_vector3_approx_eq(&tar_vector, &res_vector);
     }
 
     #[test]
