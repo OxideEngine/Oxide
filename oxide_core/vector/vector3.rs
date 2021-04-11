@@ -41,6 +41,16 @@ impl vector::InnerProduct for Vector3 {
     }
 }
 
+impl vector::OuterProduct for Vector3 {
+    fn outer_product(&self, _rhs: &Self) -> Vector3 {
+        Vector3 {
+            x: self.y * _rhs.z - self.z * _rhs.y,
+            y: self.z * _rhs.x - self.x * _rhs.z,
+            z: self.x * _rhs.y - self.y * _rhs.x,
+        }
+    }
+}
+
 impl vector::Scale for Vector3 {
     fn scale(&self, multiplier: f32) -> Self {
         Self {

@@ -27,3 +27,16 @@ macro_rules! assert_approx_eq {
         );
     }};
 }
+
+use crate::vector::{vector2, vector3};
+
+pub fn assert_vector2_approx_eq(a: &vector2::Vector2, b: &vector2::Vector2) {
+    assert_approx_eq!(a.x, b.x);
+    assert_approx_eq!(a.y, b.y);
+}
+
+pub fn assert_vector3_approx_eq(a: &vector3::Vector3, b: &vector3::Vector3) {
+    assert_approx_eq!(a.x, b.x);
+    assert_approx_eq!(a.y, b.y);
+    assert_approx_eq!(a.z, b.z);
+}
