@@ -61,6 +61,23 @@ mod test {
     }
 
     #[test]
+    fn negate() {
+        let new_vector = vector3::Vector3 {
+            x: 3.0,
+            y: 4.0,
+            z: 5.0,
+        };
+        let tar_vector = vector3::Vector3 {
+            x: -3.0,
+            y: -4.0,
+            z: -5.0,
+        };
+        let res_vector = new_vector.negate();
+        assert_vector3_approx_eq(&tar_vector, &res_vector);
+        assert_approx_eq!(tar_vector.get_length(), res_vector.get_length());
+    }
+
+    #[test]
     fn add() {
         let new_vector_1 = vector3::Vector3 {
             x: 3.0,
