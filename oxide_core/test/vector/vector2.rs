@@ -55,6 +55,7 @@ mod test {
         let tar_vector = vector2::Vector2 { x: -3.0, y: -4.0 };
         let res_vector = new_vector.negate();
         assert_vector2_approx_eq(&tar_vector, &res_vector);
+        assert_approx_eq!(tar_vector.get_length(), res_vector.get_length());
     }
 
     #[test]
