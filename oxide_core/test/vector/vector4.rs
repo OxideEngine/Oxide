@@ -73,6 +73,25 @@ mod test {
     }
 
     #[test]
+    fn negate() {
+        let new_vector = vector4::Vector4 {
+            x: 3.0,
+            y: 4.0,
+            z: 5.0,
+            w: 6.0,
+        };
+        let tar_vector = vector4::Vector4 {
+            x: -3.0,
+            y: -4.0,
+            z: -5.0,
+            w: -6.0,
+        };
+        let res_vector = new_vector.negate();
+        assert_vector4_approx_eq(&tar_vector, &res_vector);
+        assert_approx_eq!(tar_vector.get_length(), res_vector.get_length());
+    }
+
+    #[test]
     fn add() {
         let new_vector_1 = vector4::Vector4 {
             x: 3.0,
