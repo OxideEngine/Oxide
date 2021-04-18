@@ -128,7 +128,8 @@ mod test {
         let tar_vector = vector3::Vector3 {
             x: 0.424_264_07,
             y: 0.565_685_45,
-            z: 0.70710678118654752440084436210485,
+            z: 0.707_106_77,
+
         };
         let res_vector = new_vector.normalize();
         assert_vector3_approx_eq(&tar_vector, &res_vector);
