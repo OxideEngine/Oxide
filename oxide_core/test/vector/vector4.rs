@@ -145,7 +145,7 @@ mod test {
             y: 0.431_331_1,
 
             z: 0.539_163_9,
-            w: 0.64699663922063049436161042376676,
+            w: 0.646_996_6,
         };
         let res_vector = new_vector.normalize();
         assert_vector4_approx_eq(&tar_vector, &res_vector);
