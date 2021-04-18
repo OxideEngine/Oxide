@@ -24,7 +24,7 @@ mod test {
             z: 5.0,
             w: 6.0,
         };
-        let tar: f32 = 9.2736184954957037525164160739902;
+        let tar: f32 = 9.273_619;
         let res = new_vector.get_length();
         assert_approx_eq!(tar, res);
     }
