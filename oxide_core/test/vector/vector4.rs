@@ -1,13 +1,7 @@
 #[cfg(test)]
 mod test {
+    use crate::test::utils::*;
     use crate::vector::*;
-
-    fn assert_vector4_approx_eq(a: &vector4::Vector4, b: &vector4::Vector4) {
-        assert_approx_eq!(a.x, b.x);
-        assert_approx_eq!(a.y, b.y);
-        assert_approx_eq!(a.z, b.z);
-        assert_approx_eq!(a.w, b.w);
-    }
 
     #[test]
     fn get_squared_length() {
