@@ -28,12 +28,7 @@ impl vector::Length for Vector4 {
 
 impl vector::Rotate for Vector4 {
     fn rotate(&self, _rotation_matrix: matrix::Matrix) -> Self {
-        Self {
-            x: 0.0,
-            y: 0.0,
-            z: 0.0,
-            w: 0.0,
-        }
+        panic!("TODO")
     }
 }
 
