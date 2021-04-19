@@ -1,0 +1,17 @@
+[package]
+name = "oxide_math"
+version = "0.1.0"
+authors = ["Chris Ohk <utilforever@gmail.com>", "Changseo Jang <changseo_jang@korea.ac.kr>", "Yongwook Choi <hyperflow@kakao.com>", "Chaneun Yeo <yce1014@naver.com>"]
+description = "Oxide math engine"
+repository = "https://github.com/utilforever/Oxide"
+readme = "README.md"
+keywords = [ "game", "engine", "math", "oxide" ]
+license = "MIT"
+edition = "2018"
+
+[lib]
+name = "oxide_math"
+path = "lib.rs"
+
+[dependencies]
+serde = { version = "1.0", features = ["derive"] }
