@@ -1,8 +1,9 @@
 use crate::vector::vector3::*;
 use crate::vector::*;
+use serde::{Deserialize, Serialize};
 use std::ops;
 
-#[derive(Copy, Clone, PartialEq, Debug)]
+#[derive(Copy, Clone, PartialEq, Serialize, Deserialize, Debug)]
 pub struct Quaternion {
   pub x: f32,
   pub y: f32,
@@ -10,31 +11,29 @@ pub struct Quaternion {
   pub w: f32,
 }
 
-pub trait VectorPart {
-  fn get_vector_part(&self) -> Vector3;
-}
-
-impl VectorPart for Quaternion {
-  fn get_vector_part(&self) -> Vector3 {
+impl Quaternion {
+  pub fn get_vector_part(&self) -> Vector3 {
     Vector3 {
       x: self.x,
       y: self.y,
       z: self.z,
     }
   }
-}
-
-pub trait ScalarPart {
-  fn get_scalar_part(&self) -> f32;
-}
-
-impl ScalarPart for Quaternion {
-  fn get_scalar_part(&self) -> f32 {
+  pub fn get_scalar_part(&self) -> f32 {
     self.w
+  }
+  pub fn set_identity(&mut self) -> () {
+    let one = 1.0f32;
+    let zero = 0.0f32;
+
+    self.x = zero;
+    self.y = zero;
+    self.z = zero;
+    self.w = one;
   }
 }
 
-pub fn id() -> Quaternion {
+pub fn make_identity() -> Quaternion {
   let one = 1.0f32;
   let zero = 0.0f32;
 
@@ -85,10 +84,9 @@ impl Quaternion {
   }
 }
 
-pub fn rotate_vector(q: Quaternion, v: Vector3) -> Vector3 {
-  let vector_q = q.get_vector_part();
-  let t = vector_q.outer_product(&v).scale(2.0f32);
-  v + t.scale(q.w) + vector_q.outer_product(&t)
+pub fn rotate(q: Quaternion, angle_in_radius: f32) -> Quaternion {
+  let (axis, angle) = get_axis_angle(q);
+  from_axis_angle(axis, angle + angle_in_radius)
 }
 
 pub fn from_euler_angles(x: f32, y: f32, z: f32) -> Quaternion {
