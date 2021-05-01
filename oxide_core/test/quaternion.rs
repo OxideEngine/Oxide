@@ -154,28 +154,6 @@ mod test {
   }
 
   #[test]
-  fn test_square_len() {
-    let q = Quaternion {
-      x: -2.0,
-      y: 3.0,
-      z: -4.0,
-      w: 1.0,
-    };
-    assert_eq!(q.get_squared_length(), 30.0);
-  }
-
-  #[test]
-  fn test_len() {
-    let q = Quaternion {
-      x: -2.0,
-      y: 3.0,
-      z: -4.0,
-      w: 1.0,
-    };
-    assert_eq!(q.get_length(), 30f32.sqrt());
-  }
-
-  #[test]
   fn test_from_euler_angle() {
     let q = from_euler_angles(
       ::std::f32::consts::FRAC_PI_6,
