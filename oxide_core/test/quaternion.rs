@@ -6,7 +6,7 @@ mod test {
 
   #[test]
   fn test_id() {
-    let id = id();
+    let id = make_identity();
     let idq: Quaternion = Quaternion {
       x: 0.0,
       y: 0.0,
@@ -29,7 +29,7 @@ mod test {
 
   #[test]
   fn test_get_vector_part() {
-    let id = id();
+    let id = make_identity();
     let zero_vector = Vector3 {
       x: 0.0,
       y: 0.0,
@@ -225,16 +225,19 @@ mod test {
         y: 1.0,
         z: 0.0,
       },
+      ::std::f32::consts::FRAC_PI_2,
+    );
+    let rotated = rotate(q, ::std::f32::consts::FRAC_PI_2);
+    let result = from_axis_angle(
+      Vector3 {
+        x: 0.0,
+        y: 1.0,
+        z: 0.0,
+      },
       ::std::f32::consts::PI,
     );
-    let v = Vector3 {
-      x: 1.0,
-      y: 1.0,
-      z: 1.0,
-    };
-    let rotated = rotate_vector(q, v);
-    assert!((rotated.x - -1.0).abs() <= f32::EPSILON);
-    assert!((rotated.y - 1.0).abs() <= f32::EPSILON);
-    assert!((rotated.z - -1.0).abs() <= f32::EPSILON);
+    assert!((rotated.x - result.x).abs() <= f32::EPSILON);
+    assert!((rotated.y - result.y).abs() <= f32::EPSILON);
+    assert!((rotated.z - result.z).abs() <= f32::EPSILON);
   }
 }
