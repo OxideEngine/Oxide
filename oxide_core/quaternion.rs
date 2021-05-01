@@ -76,10 +76,10 @@ pub fn conjugate(a: Quaternion) -> Quaternion {
 }
 
 impl Quaternion {
-  pub fn get_squared_length(&self) -> f32 {
+  fn get_squared_length(&self) -> f32 {
     self.w * self.w + self.get_vector_part().get_squared_length()
   }
-  pub fn get_length(&self) -> f32 {
+  fn get_length(&self) -> f32 {
     self.get_squared_length().sqrt()
   }
 }
