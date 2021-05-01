@@ -5,7 +5,20 @@ mod test {
   use crate::vector::*;
 
   #[test]
-  fn test_id() {
+  fn test_set_identity() {
+    let id = make_identity();
+    let mut q = Quaternion {
+      x: 3.0,
+      y: 2.0,
+      z: 1.0,
+      w: 0.0,
+    };
+    q.set_identity();
+    assert_eq!(id, q);
+  }
+
+  #[test]
+  fn test_make_identity() {
     let id = make_identity();
     let idq: Quaternion = Quaternion {
       x: 0.0,
