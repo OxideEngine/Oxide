@@ -47,7 +47,9 @@ impl vector::Scale for Vector4 {
             w: self.w * multiplier,
         }
     }
+}
 
+impl vector::Negate for Vector4 {
     fn negate(&self) -> Self {
         self.scale(-1.0)
     }
