@@ -55,7 +55,10 @@ impl vector::Scale for Vector3 {
             z: self.z * multiplier,
         }
     }
+}
 
+
+impl vector::Negate for Vector3 {
     fn negate(&self) -> Self {
         self.scale(-1.0)
     }
