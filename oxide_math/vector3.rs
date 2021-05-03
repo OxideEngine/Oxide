@@ -57,7 +57,6 @@ impl vector::Scale for Vector3 {
     }
 }
 
-
 impl vector::Negate for Vector3 {
     fn negate(&self) -> Self {
         self.scale(-1.0)
