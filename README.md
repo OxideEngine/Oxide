@@ -2,7 +2,7 @@
 
 <img src="./docs/logo.png" width=256 height=256 />
 
-[![License](https://img.shields.io/badge/Licence-MIT-blue.svg)](https://github.com/utilForever/Oxide/blob/master/LICENSE) ![Build](https://github.com/utilForever/Oxide/workflows/Build/badge.svg) ![Aduit](https://github.com/utilForever/Oxide/workflows/Aduit/badge.svg) ![Test](https://github.com/utilForever/Oxide/workflows/Test/badge.svg) ![Rust](https://github.com/utilForever/Oxide/workflows/Rust/badge.svg) [![codecov](https://codecov.io/gh/utilForever/Oxide/branch/main/graph/badge.svg)](https://codecov.io/gh/utilForever/Oxide) [![Discord](https://img.shields.io/discord/799981980048949258.svg)](https://discord.gg/fAVE3yBENq)
+[![License](https://img.shields.io/badge/Licence-MIT-blue.svg)](https://github.com/utilForever/Oxide/blob/master/LICENSE) ![Build](https://github.com/utilForever/Oxide/workflows/Build/badge.svg) ![Audit](https://github.com/utilForever/Oxide/workflows/Audit/badge.svg) ![Test](https://github.com/utilForever/Oxide/workflows/Test/badge.svg) ![Rust](https://github.com/utilForever/Oxide/workflows/Rust/badge.svg) [![codecov](https://codecov.io/gh/utilForever/Oxide/branch/main/graph/badge.svg)](https://codecov.io/gh/utilForever/Oxide) [![Discord](https://img.shields.io/discord/799981980048949258.svg)](https://discord.gg/fAVE3yBENq)
 
 Oxide is a cross-platform game engine written in Rust.
 
@@ -34,10 +34,10 @@ The class is licensed under the [MIT License](http://opensource.org/licenses/MIT
 
 Copyright &copy; 2021 Oxide Team
 
-  * [Chris Ohk](http://www.github.com/utilForever)
-  * [Changseo Jang](https://github.com/BeLeap)
-  * [Yongwook Choi](https://github.com/hyp3rflow)
-  * [Chaneun Yeo](https://github.com/LuneFleurs)
+- [Chris Ohk](http://www.github.com/utilForever)
+- [Changseo Jang](https://github.com/BeLeap)
+- [Yongwook Choi](https://github.com/hyp3rflow)
+- [Chaneun Yeo](https://github.com/LuneFleurs)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
