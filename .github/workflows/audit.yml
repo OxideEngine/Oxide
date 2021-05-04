@@ -1,10 +1,10 @@
-name: Aduit
+name: Audit
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   security_audit:
