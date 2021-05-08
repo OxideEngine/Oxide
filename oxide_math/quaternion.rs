@@ -22,7 +22,7 @@ impl Quaternion {
     pub fn get_scalar_part(&self) -> f32 {
         self.w
     }
-    pub fn set_identity(&mut self) -> () {
+    pub fn set_identity(&mut self) {
         let one = 1.0f32;
         let zero = 0.0f32;
 
