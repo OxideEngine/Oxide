@@ -37,7 +37,7 @@ mod test {
             z: 0.0,
             w: 3.0,
         };
-        assert_eq!(q.get_scalar_part(), 3.0);
+        assert_approx_eq!(q.get_scalar_part(), 3.0);
     }
 
     #[test]
@@ -131,7 +131,7 @@ mod test {
             z: 4.0,
             w: -1.0,
         };
-        assert_eq!(dot(a, b), -1.0 + -4.0)
+        assert_approx_eq!(dot(a, b), -1.0 + -4.0)
     }
 
     #[test]
