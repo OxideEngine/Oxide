@@ -1,8 +1,10 @@
-use crate::matrix;
+use std::ops;
+
+use serde::{Deserialize, Serialize};
+
+use crate::{matrix, vector3};
 use crate::vector;
 use crate::vector::*;
-use serde::{Deserialize, Serialize};
-use std::ops;
 
 #[derive(PartialEq, Debug, Serialize, Deserialize)]
 pub struct Vector2 {
