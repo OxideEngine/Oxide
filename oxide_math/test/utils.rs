@@ -1,3 +1,5 @@
+use crate::{vector2, vector3, vector4};
+
 #[macro_export]
 macro_rules! assert_approx_eq {
     ($a:expr, $b:expr) => {{
@@ -27,8 +29,6 @@ macro_rules! assert_approx_eq {
         );
     }};
 }
-
-use crate::vector::{vector2, vector3, vector4};
 
 pub fn assert_vector2_approx_eq(a: &vector2::Vector2, b: &vector2::Vector2) {
     assert_approx_eq!(a.x, b.x);

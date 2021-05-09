@@ -2,6 +2,7 @@
 mod test {
     use crate::test::utils::*;
     use crate::vector::*;
+    use crate::vector4;
 
     #[test]
     fn get_squared_length() {

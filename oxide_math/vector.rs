@@ -1,7 +1,4 @@
-use crate::matrix;
-pub mod vector2;
-pub mod vector3;
-pub mod vector4;
+use crate::{matrix, vector3};
 
 pub trait Rotate {
     // TODO: Can be implemented only after matrix implemented
