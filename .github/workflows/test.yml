@@ -34,7 +34,7 @@ jobs:
           mkdir coverage
           ./grcov ./target/debug/ -s . -t lcov --llvm --branch --ignore-not-existing --ignore "/*" \
                   --excl-line '#\[|=> panic!|unreachable!|Io\(std::io::Error\)' \
-                  --excl-br-line '#\[|=> panic!|unreachable!|assert_..!' -o ./coverage/lcov.info
+                  --excl-br-line '#\[|=> panic!|unreachable!|assert_..!|assert_approx_eq!' -o ./coverage/lcov.info
       - name: Upload to Codecov
         uses: codecov/codecov-action@v1.0.2
         with:
