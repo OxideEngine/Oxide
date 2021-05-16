@@ -1,8 +1,8 @@
 #[cfg(test)]
 mod test {
     use crate::quaternion::*;
-    use crate::vector::vector3::*;
     use crate::vector::*;
+    use crate::vector3::Vector3;
 
     #[test]
     fn test_set_identity() {
@@ -206,6 +206,21 @@ mod test {
         assert!((axis.y - (2.0 / 7.0f32).sqrt()).abs() <= f32::EPSILON);
         assert!((axis.z - 1.0 / (14.0f32).sqrt()).abs() <= f32::EPSILON);
         assert!((angle - ::std::f32::consts::FRAC_PI_3).abs() <= f32::EPSILON);
+    }
+
+    #[test]
+    fn test_get_axis_angle_over_pi() {
+        let q = Quaternion {
+            x: 0.4008919,
+            y: 0.2672612,
+            z: 0.1336306,
+            w: -0.1,
+        };
+        let (axis, angle) = get_axis_angle(q);
+        assert!((axis.x + 3.0 / (14.0f32).sqrt()).abs() <= f32::EPSILON);
+        assert!((axis.y + (2.0 / 7.0f32).sqrt()).abs() <= f32::EPSILON);
+        assert!((axis.z + 1.0 / (14.0f32).sqrt()).abs() <= f32::EPSILON);
+        assert_approx_eq!(angle, 2.941257);
     }
 
     #[test]
