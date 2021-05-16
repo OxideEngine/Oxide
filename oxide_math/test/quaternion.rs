@@ -143,10 +143,10 @@ mod test {
             w: 2.0,
         };
         let a = inverse(q);
-        assert!((a.x - -3.0 / (53.0f32.sqrt())).abs() <= f32::EPSILON);
-        assert!((a.y - 2.0 / (53.0f32.sqrt())).abs() <= f32::EPSILON);
-        assert!((a.z - -6.0 / (53.0f32.sqrt())).abs() <= f32::EPSILON);
-        assert!((a.w - 2.0 / (53.0f32.sqrt())).abs() <= f32::EPSILON);
+        assert_approx_eq!(a.x, -3.0 / (53.0f32.sqrt()));
+        assert_approx_eq!(a.y, 2.0 / (53.0f32.sqrt()));
+        assert_approx_eq!(a.z, -6.0 / (53.0f32.sqrt()));
+        assert_approx_eq!(a.w, 2.0 / (53.0f32.sqrt()));
     }
 
     #[test]
@@ -173,10 +173,10 @@ mod test {
             ::std::f32::consts::FRAC_PI_3,
             ::std::f32::consts::FRAC_PI_2,
         );
-        assert!((q.x - -0.1830127).abs() <= f32::EPSILON);
-        assert!((q.y - 0.5).abs() <= f32::EPSILON);
-        assert!((q.z - 0.5).abs() <= f32::EPSILON);
-        assert!((q.w - 0.6830127).abs() <= f32::EPSILON);
+        assert_approx_eq!(q.x, -0.1830127);
+        assert_approx_eq!(q.y, 0.5);
+        assert_approx_eq!(q.z, 0.5);
+        assert_approx_eq!(q.w, 0.6830127);
     }
 
     #[test]
@@ -187,10 +187,10 @@ mod test {
             z: 1.0,
         };
         let q = from_axis_angle(axis.normalize(), ::std::f32::consts::FRAC_PI_3);
-        assert!((q.x - 0.4008919).abs() <= f32::EPSILON);
-        assert!((q.y - 0.2672612).abs() <= f32::EPSILON);
-        assert!((q.z - 0.1336306).abs() <= f32::EPSILON);
-        assert!((q.w - 0.8660254).abs() <= f32::EPSILON);
+        assert_approx_eq!(q.x, 0.4008919);
+        assert_approx_eq!(q.y, 0.2672612);
+        assert_approx_eq!(q.z, 0.1336306);
+        assert_approx_eq!(q.w, 0.8660254);
     }
 
     #[test]
@@ -202,10 +202,10 @@ mod test {
             w: 0.8660254,
         };
         let (axis, angle) = get_axis_angle(q);
-        assert!((axis.x - 3.0 / (14.0f32).sqrt()).abs() <= f32::EPSILON);
-        assert!((axis.y - (2.0 / 7.0f32).sqrt()).abs() <= f32::EPSILON);
-        assert!((axis.z - 1.0 / (14.0f32).sqrt()).abs() <= f32::EPSILON);
-        assert!((angle - ::std::f32::consts::FRAC_PI_3).abs() <= f32::EPSILON);
+        assert_approx_eq!(axis.x, 3.0 / (14.0f32).sqrt());
+        assert_approx_eq!(axis.y, (2.0 / 7.0f32).sqrt());
+        assert_approx_eq!(axis.z, 1.0 / (14.0f32).sqrt());
+        assert_approx_eq!(angle, ::std::f32::consts::FRAC_PI_3);
     }
 
     #[test]
@@ -217,9 +217,9 @@ mod test {
             w: -0.1,
         };
         let (axis, angle) = get_axis_angle(q);
-        assert!((axis.x + 3.0 / (14.0f32).sqrt()).abs() <= f32::EPSILON);
-        assert!((axis.y + (2.0 / 7.0f32).sqrt()).abs() <= f32::EPSILON);
-        assert!((axis.z + 1.0 / (14.0f32).sqrt()).abs() <= f32::EPSILON);
+        assert_approx_eq!(axis.x, -(3.0 / (14.0f32).sqrt()));
+        assert_approx_eq!(axis.y, -((2.0 / 7.0f32).sqrt()));
+        assert_approx_eq!(axis.z, -(1.0 / (14.0f32).sqrt()));
         assert_approx_eq!(angle, 2.941257);
     }
 
@@ -242,8 +242,8 @@ mod test {
             },
             ::std::f32::consts::PI,
         );
-        assert!((rotated.x - result.x).abs() <= f32::EPSILON);
-        assert!((rotated.y - result.y).abs() <= f32::EPSILON);
-        assert!((rotated.z - result.z).abs() <= f32::EPSILON);
+        assert_approx_eq!(rotated.x, result.x);
+        assert_approx_eq!(rotated.y, result.y);
+        assert_approx_eq!(rotated.z, result.z);
     }
 }
