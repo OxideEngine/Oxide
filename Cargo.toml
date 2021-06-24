@@ -1,2 +1,25 @@
+[package]
+name = "oxide_engine"
+version = "0.0.1"
+authors = [
+    "Chris Ohk <utilforever@gmail.com>",
+    "Changseo Jang <changseo_jang@korea.ac.kr>",
+    "Yongwook Choi <hyperflow@kakao.com>",
+    "Chaneun Yeo <yce1014@naver.com>",
+    "Oxide Engine"
+]
+edition = "2018"
+description = "A cross-platform game engine written in Rust"
+keywords = [ "game", "engine", "oxide" ]
+categories = ["game-engines"]
+
+repository = "https://github.com/OxideEngine/Oxide"
+
+readme = "README.md"
+license = "MIT"
+
+[lib]
+crate-type = ["lib"]
+
 [workspace]
 members = [ "oxide_*" ]
