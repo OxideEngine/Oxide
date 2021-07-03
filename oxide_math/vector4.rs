@@ -55,6 +55,12 @@ impl vector::Negate for Vector4 {
     }
 }
 
+impl vector::Distance for Vector4 {
+    fn distance(&self, _rhs: &Self) -> f32 {
+        (self - _rhs).get_length()
+    }
+}
+
 impl ops::Add<Vector4> for Vector4 {
     type Output = Vector4;
 
@@ -72,6 +78,19 @@ impl ops::Sub<Vector4> for Vector4 {
     type Output = Vector4;
 
     fn sub(self, _rhs: Vector4) -> Vector4 {
+        Vector4 {
+            x: self.x - _rhs.x,
+            y: self.y - _rhs.y,
+            z: self.z - _rhs.z,
+            w: self.w - _rhs.w,
+        }
+    }
+}
+
+impl<'a, 'b> ops::Sub<&'b Vector4> for &'a Vector4 {
+    type Output = Vector4;
+
+    fn sub(self, _rhs: &'b Vector4) -> Vector4 {
         Vector4 {
             x: self.x - _rhs.x,
             y: self.y - _rhs.y,
