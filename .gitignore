@@ -11,3 +11,4 @@ Cargo.lock
 
 # Per Editor Configuration
 .idea/
+.vscode/
