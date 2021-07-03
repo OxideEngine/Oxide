@@ -30,3 +30,7 @@ pub trait Length {
 pub trait Distance {
     fn distance(&self, _rhs: &Self) -> f32;
 }
+
+pub trait Clamp {
+    fn clamp(&self, min: f32, max: f32) -> Self;
+}

@@ -113,6 +113,22 @@ mod test {
     }
 
     #[test]
+    fn clamp() {
+        let new_vector = vector3::Vector3 {
+            x: 3.0,
+            y: 4.0,
+            z: 5.0,
+        };
+        let tar_vector = vector3::Vector3 {
+            x: 3.0,
+            y: 3.0,
+            z: 3.0,
+        };
+        let res_vector = new_vector.clamp(0.0, 3.0);
+        assert_vector3_approx_eq(&tar_vector, &res_vector);
+    }
+
+    #[test]
     fn add() {
         let new_vector_1 = vector3::Vector3 {
             x: 3.0,
