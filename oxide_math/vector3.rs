@@ -69,6 +69,16 @@ impl vector::Distance for Vector3 {
     }
 }
 
+impl vector::Clamp for Vector3 {
+    fn clamp(&self, min: f32, max: f32) -> Self {
+        Self {
+            x: self.x.clamp(min, max),
+            y: self.y.clamp(min, max),
+            z: self.z.clamp(min, max),
+        }
+    }
+}
+
 impl ops::Add<Vector3> for Vector3 {
     type Output = Vector3;
 
