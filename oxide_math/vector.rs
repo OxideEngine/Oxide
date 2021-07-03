@@ -26,3 +26,7 @@ pub trait Length {
     fn get_length(&self) -> f32;
     fn normalize(&self) -> Self;
 }
+
+pub trait Distance {
+    fn distance(&self, _rhs: &Self) -> f32;
+}
