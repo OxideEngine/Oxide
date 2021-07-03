@@ -79,6 +79,40 @@ mod test {
     }
 
     #[test]
+    fn distance1() {
+        let new_vector_1 = vector3::Vector3 {
+            x: 3.0,
+            y: 4.0,
+            z: 5.0,
+        };
+        let new_vector_2 = vector3::Vector3 {
+            x: 3.0,
+            y: 7.0,
+            z: 11.0,
+        };
+        let target = 6.708_204;
+        let result = new_vector_1.distance(&new_vector_2);
+        assert_approx_eq!(target, result);
+    }
+
+    #[test]
+    fn distance2() {
+        let new_vector_1 = vector3::Vector3 {
+            x: 3.0,
+            y: 4.0,
+            z: 5.0,
+        };
+        let new_vector_2 = vector3::Vector3 {
+            x: -3.0,
+            y: -4.0,
+            z: -5.0,
+        };
+        let target = 14.142_136;
+        let result = new_vector_1.distance(&new_vector_2);
+        assert_approx_eq!(target, result);
+    }
+
+    #[test]
     fn add() {
         let new_vector_1 = vector3::Vector3 {
             x: 3.0,
