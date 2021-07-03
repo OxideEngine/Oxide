@@ -100,7 +100,7 @@ mod test {
             z: 11.0,
             w: 13.0,
         };
-        let target = 9.695359714832658;
+        let target = 9.695_359_71;
         let result = new_vector_1.distance(&new_vector_2);
         assert_approx_eq!(target, result);
     }
@@ -119,7 +119,7 @@ mod test {
             z: -5.0,
             w: -6.0,
         };
-        let target = 18.54723699099141;
+        let target = 18.547_236_99;
         let result = new_vector_1.distance(&new_vector_2);
         assert_approx_eq!(target, result);
     }
