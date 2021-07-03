@@ -60,6 +60,24 @@ mod test {
     }
 
     #[test]
+    fn distance1() {
+        let new_vector_1 = vector2::Vector2 { x: 3.0, y: 4.0 };
+        let new_vector_2 = vector2::Vector2 { x: 3.0, y: 7.0 };
+        let target = 3.0;
+        let result = new_vector_1.distance(&new_vector_2);
+        assert_approx_eq!(target, result);
+    }
+
+    #[test]
+    fn distance2() {
+        let new_vector_1 = vector2::Vector2 { x: 3.0, y: 4.0 };
+        let new_vector_2 = vector2::Vector2 { x: -3.0, y: -4.0 };
+        let target = 10.0;
+        let result = new_vector_1.distance(&new_vector_2);
+        assert_approx_eq!(target, result);
+    }
+
+    #[test]
     fn add() {
         let new_vector_1 = vector2::Vector2 { x: 3.0, y: 4.0 };
         let new_vector_2 = vector2::Vector2 { x: 3.0, y: 7.0 };
