@@ -143,6 +143,30 @@ mod test {
     }
 
     #[test]
+    fn project_on_to() {
+        let new_vector_1 = vector4::Vector4 {
+            x: 3.0,
+            y: 4.0,
+            z: 5.0,
+            w: 6.0,
+        };
+        let new_vector_2 = vector4::Vector4 {
+            x: 3.0,
+            y: 7.0,
+            z: 11.0,
+            w: 13.0,
+        };
+        let tar_vector = vector4::Vector4 {
+            x: 1.465_517_24,
+            y: 3.419_540_22,
+            z: 5.373_563_21,
+            w: 6.350_574_71,
+        };
+        let res_vector = new_vector_1.project_on_to(&new_vector_2);
+        assert_vector4_approx_eq(&tar_vector, &res_vector);
+    }
+
+    #[test]
     fn add() {
         let new_vector_1 = vector4::Vector4 {
             x: 3.0,

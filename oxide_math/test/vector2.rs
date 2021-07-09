@@ -86,6 +86,18 @@ mod test {
     }
 
     #[test]
+    fn project_on_to() {
+        let new_vector_1 = vector2::Vector2 { x: 3.0, y: 4.0 };
+        let new_vector_2 = vector2::Vector2 { x: 3.0, y: 7.0 };
+        let tar_vector = vector2::Vector2 {
+            x: 1.913_793_10,
+            y: 4.465_517_24,
+        };
+        let res_vector = new_vector_1.project_on_to(&new_vector_2);
+        assert_vector2_approx_eq(&tar_vector, &res_vector);
+    }
+
+    #[test]
     fn add() {
         let new_vector_1 = vector2::Vector2 { x: 3.0, y: 4.0 };
         let new_vector_2 = vector2::Vector2 { x: 3.0, y: 7.0 };

@@ -34,3 +34,7 @@ pub trait Distance {
 pub trait Clamp {
     fn clamp(&self, min: f32, max: f32) -> Self;
 }
+
+pub trait Project {
+    fn project_on_to(&self, _rhs: &Self) -> Self;
+}
