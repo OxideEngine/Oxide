@@ -72,6 +72,14 @@ impl vector::Clamp for Vector4 {
     }
 }
 
+impl vector::Project for Vector4 {
+    fn project_on_to(&self, _rhs: &Self) -> Self {
+        return _rhs
+            .normalize()
+            .scale(self.inner_product(_rhs) / _rhs.get_length());
+    }
+}
+
 impl ops::Add<Vector4> for Vector4 {
     type Output = Vector4;
 
