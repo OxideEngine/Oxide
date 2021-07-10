@@ -65,17 +65,13 @@ impl ObjLoader {
                         mesh.smoothing_groups.push(lines[1].parse().unwrap());
                     }
                     "f" => {
-                        // face
-                        let mut temp = 0;
-
-                        for first_letter in &lines {
+                        for (idx, first_letter) in lines.iter().enumerate() {
                             if *first_letter != "f" {
-                                let vertex: Vec<&str> = lines[temp].split('/').collect();
+                                let vertex: Vec<&str> = lines[idx].split('/').collect();
                                 position_group.push(vertex[0].parse().unwrap());
                                 texture_coord_group.push(vertex[1].parse().unwrap());
                                 vertex_normal_group.push(vertex[2].parse().unwrap());
                             }
-                            temp += 1;
                         }
                         mesh.position_groups.push(position_group);
                         mesh.texture_coord_groups.push(texture_coord_group);
