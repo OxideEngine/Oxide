@@ -77,9 +77,6 @@ impl ObjLoader {
                         mesh.texture_coord_groups.push(texture_coord_group);
                         mesh.vertex_normal_groups.push(vertex_normal_group);
                     }
-                    "#" => { // comment subsciptions
-                         // should I do something?
-                    }
                     _ => (),
                 }
             }
