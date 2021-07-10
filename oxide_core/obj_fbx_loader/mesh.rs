@@ -1,4 +1,4 @@
-#[derive(Debug, Default)]
+#[derive(Debug, Default, PartialEq)]
 pub struct Mesh {
     pub mtl_library: String,
     pub positions: Vec<Vec<f32>>,
