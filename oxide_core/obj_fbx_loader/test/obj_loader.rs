@@ -68,7 +68,8 @@ mod test {
                 vec![6, 6, 6, 6],
             ],
         };
-        let mut file = File::open("obj_fbx_loader/test/resources/test.obj").expect("File not found");
+        let mut file =
+            File::open("obj_fbx_loader/test/resources/test.obj").expect("File not found");
         let parsed_result = obj_loader.load(&mut file);
         assert_eq!(expected_result, parsed_result);
     }
