@@ -1,0 +1,15 @@
+[env]
+CARGO_MAKE_EXTEND_WORKSPACE_MAKEFILE = true
+
+[tasks.clippy]
+args = ["clippy", "--all-targets", "--all-features"]
+command = "cargo"
+
+[tasks.clean]
+args = ["clean"]
+command = "cargo"
+
+[tasks.cleanbuild]
+args = ["build"]
+command = "cargo"
+dependencies = ["clean"]
