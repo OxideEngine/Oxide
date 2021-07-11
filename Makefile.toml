@@ -2,7 +2,7 @@
 CARGO_MAKE_EXTEND_WORKSPACE_MAKEFILE = true
 
 [tasks.clippy]
-args = ["clippy", "--all-targets", "--all-features"]
+args = ["clippy", "--all-targets", "--all-features", "--", "-D", "warnings"]
 command = "cargo"
 
 [tasks.clean]
