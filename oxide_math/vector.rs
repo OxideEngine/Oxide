@@ -1,9 +1,9 @@
-use crate::{matrix, vector3};
+use crate::vector3;
 
-pub trait Rotate {
-    // TODO: Can be implemented only after matrix implemented
-    fn rotate(&self, rotation_matrix: matrix::Matrix) -> Self;
-}
+// pub trait Rotate {
+//     // TODO: Can be implemented only after matrix implemented
+//     fn rotate(&self, rotation_matrix: matrix::Matrix) -> Self;
+// }
 
 pub trait InnerProduct {
     fn inner_product(&self, _rhs: &Self) -> f32;

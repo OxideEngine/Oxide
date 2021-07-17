@@ -4,7 +4,7 @@ use serde::{Deserialize, Serialize};
 
 use crate::vector;
 use crate::vector::*;
-use crate::{matrix, vector3};
+use crate::vector3;
 
 #[derive(PartialEq, Debug, Serialize, Deserialize)]
 pub struct Vector2 {
@@ -12,11 +12,11 @@ pub struct Vector2 {
     pub y: f32,
 }
 
-impl vector::Rotate for Vector2 {
-    fn rotate(&self, _rotation_matrix: matrix::Matrix) -> Self {
-        panic!("TODO")
-    }
-}
+// impl vector::Rotate for Vector2 {
+//     fn rotate(&self, _rotation_matrix: matrix::Matrix) -> Self {
+//         panic!("TODO")
+//     }
+// }
 
 impl vector::InnerProduct for Vector2 {
     fn inner_product(&self, _rhs: &Self) -> f32 {
