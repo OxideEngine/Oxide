@@ -1,4 +1,3 @@
-use crate::matrix;
 use crate::vector;
 use crate::vector::*;
 use serde::{Deserialize, Serialize};
@@ -26,11 +25,11 @@ impl vector::Length for Vector4 {
     }
 }
 
-impl vector::Rotate for Vector4 {
-    fn rotate(&self, _rotation_matrix: matrix::Matrix) -> Self {
-        panic!("TODO")
-    }
-}
+// impl vector::Rotate for Vector4 {
+//     fn rotate(&self, _rotation_matrix: matrix::Matrix) -> Self {
+//         panic!("TODO")
+//     }
+// }
 
 impl vector::InnerProduct for Vector4 {
     fn inner_product(&self, _rhs: &Self) -> f32 {

@@ -10,14 +10,15 @@ impl Fill for Matrix2x2 {
 
 impl SetDiagonal for Matrix2x2 {
     fn set_diagonal(&self, number: f32) -> Self {
-        self[0][0] = number;
-        self[1][1] = number;
-        *self
+        let mut res = *self;
+        res[0][0] = number;
+        res[1][1] = number;
+        res
     }
 }
 
 impl IsSimilar for Matrix2x2 {
-    fn is_similar(&self, other: Matrix2x2) -> bool {
+    fn is_similar(&self, _other: Matrix2x2) -> bool {
         panic!("TODO: implement")
     }
 }
