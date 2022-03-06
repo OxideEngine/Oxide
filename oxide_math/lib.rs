@@ -1,3 +1,4 @@
+pub mod box2;
 pub mod matrix;
 pub mod quaternion;
 pub mod test;
