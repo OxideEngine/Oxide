@@ -6,6 +6,7 @@ authors = [
     "Changseo Jang <changseo_jang@korea.ac.kr>",
     "Yongwook Choi <hyperflow@kakao.com>",
     "Chaneun Yeo <yce1014@naver.com>",
+    "Seokwon Moon <artichoke42@naver.com>",
     "Oxide Engine"
 ]
 edition = "2018"
