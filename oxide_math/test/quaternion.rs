@@ -1,8 +1,8 @@
 #[cfg(test)]
 mod test {
-    use crate::quaternion::*;
-    use crate::vector::*;
-    use crate::vector3::Vector3;
+    use crate::commons::quaternion::*;
+    use crate::commons::vector::*;
+    use crate::commons::vector3::Vector3;
 
     #[test]
     fn test_set_identity() {
