@@ -2,9 +2,9 @@ use std::ops;
 
 use serde::{Deserialize, Serialize};
 
-use crate::vector;
-use crate::vector::*;
-use crate::{matrix, vector3};
+use crate::commons::vector;
+use crate::commons::vector::*;
+use crate::commons::{matrix, vector3};
 
 #[derive(PartialEq, Debug, Serialize, Deserialize)]
 pub struct Vector2 {

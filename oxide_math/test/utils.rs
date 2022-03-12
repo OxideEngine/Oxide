@@ -1,4 +1,4 @@
-use crate::{vector2, vector3, vector4};
+use crate::commons::{vector2, vector3, vector4};
 
 #[macro_export]
 macro_rules! assert_approx_eq {

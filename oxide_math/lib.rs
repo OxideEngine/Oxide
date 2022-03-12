@@ -1,8 +1,4 @@
-pub mod box2;
-pub mod matrix;
-pub mod quaternion;
+pub mod commons;
+pub mod components;
+pub mod systems;
 pub mod test;
-pub mod vector;
-pub mod vector2;
-pub mod vector3;
-pub mod vector4;

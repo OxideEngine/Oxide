@@ -1,5 +1,5 @@
-use crate::vector::*;
-use crate::vector3::Vector3;
+use crate::commons::vector::*;
+use crate::commons::vector3::Vector3;
 use serde::{Deserialize, Serialize};
 use std::ops;
 
