@@ -1,8 +1,8 @@
 #[cfg(test)]
 mod test {
-    use crate::test::utils::*;
     use crate::commons::vector::*;
     use crate::commons::vector4;
+    use crate::test::utils::*;
 
     #[test]
     fn get_squared_length() {
