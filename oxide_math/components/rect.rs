@@ -1,7 +1,5 @@
-use legion::*;
-
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub struct Box2 {
+pub struct Rect {
     pub width: f32,
     pub height: f32,
 }

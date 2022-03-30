@@ -1,1 +1,3 @@
-pub mod box2;
+pub mod rect;
+pub mod position;
+pub mod velocity;
