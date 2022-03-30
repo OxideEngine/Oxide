@@ -25,7 +25,7 @@ mod test {
     #[test]
     fn reset_width_and_height() {
         let mut world = World::default();
-        let rect_entity: Entity = world.push((Rect{
+        let rect_entity: Entity = world.push((Rect {
             width: 1.0f32,
             height: 1.0f32,
         },));
