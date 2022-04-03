@@ -2,8 +2,7 @@
 mod test {
     use crate::components::position::*;
     use crate::components::rect::*;
-    use crate::helpers::rectsizehelpers::*;
-    use crate::test::utils::*;
+    use crate::helpers::rect_size_helpers::*;
     use legion::*;
 
     #[test]
