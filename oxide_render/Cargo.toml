@@ -3,7 +3,7 @@ name = "oxide_render"
 version = "0.0.1"
 authors = [
     "Chris Ohk <utilforever@gmail.com>",
-    "Changseo Jang <changseo_jang@korea.ac.kr>",
+    "Changseo Jang <beleap@beleap.codes>",
     "Yongwook Choi <hyperflow@kakao.com>",
     "Chaneun Yeo <yce1014@naver.com>",
     "Oxide Engine"
