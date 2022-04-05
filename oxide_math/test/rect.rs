@@ -6,6 +6,7 @@ mod test {
     use legion::*;
 
     #[test]
+    #[should_panic]
     fn init_width_and_height() {
         let mut world = World::default();
         let rect_entity: Entity = world.push((Position {
