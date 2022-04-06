@@ -1,4 +1,4 @@
-use crate::vector3;
+use crate::commons::vector3;
 
 // pub trait Rotate {
 //     // TODO: Can be implemented only after matrix implemented

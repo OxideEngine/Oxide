@@ -1,5 +1,4 @@
-pub mod box2;
-pub mod matrix;
-pub mod matrix2x2;
-pub mod quaternion;
+pub mod commons;
+pub mod components;
+pub mod helpers;
 pub mod test;

@@ -1,4 +1,4 @@
-use crate::matrix::*;
+use crate::commons::matrix::*;
 
 pub type Matrix2x2 = [[f32; 2]; 2];
 
