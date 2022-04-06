@@ -1,4 +1,5 @@
 pub mod matrix;
+pub mod matrix2x2;
 pub mod quaternion;
 pub mod vector;
 pub mod vector2;

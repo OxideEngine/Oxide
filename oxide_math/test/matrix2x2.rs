@@ -1,7 +1,7 @@
 #[cfg(test)]
 mod test {
-    use crate::matrix::*;
-    use crate::matrix2x2::Matrix2x2;
+    use crate::commons::matrix::*;
+    use crate::commons::matrix2x2::Matrix2x2;
 
     #[test]
     fn fill() {
