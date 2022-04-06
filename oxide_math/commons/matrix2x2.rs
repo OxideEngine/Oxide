@@ -51,9 +51,13 @@ impl Min for Matrix2x2 {
             .fold(std::f32::MAX, |a, b| a.min(*b))
     }
     fn abs_min(&self) -> f32 {
-        self.into_iter()
-            .flatten()
-            .fold(std::f32::MAX, |a, b| a.abs().min(b.abs()))
+        self.into_iter().flatten().fold(std::f32::MAX, |a, b| {
+            if a.abs() < b.abs() {
+                return a;
+            } else {
+                return *b;
+            }
+        })
     }
 }
 
@@ -64,9 +68,14 @@ impl Max for Matrix2x2 {
             .fold(std::f32::MIN, |a, b| a.max(*b))
     }
     fn abs_max(&self) -> f32 {
-        self.into_iter()
-            .flatten()
-            .fold(std::f32::MIN, |a, b| a.abs().max(b.abs()))
+        self.into_iter().flatten().fold(0., |a, b| {
+            println!("{}, {}", a, b);
+            if a.abs() > b.abs() {
+                return a;
+            } else {
+                return *b;
+            }
+        })
     }
 }
 

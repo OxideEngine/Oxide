@@ -54,7 +54,7 @@ mod test {
     #[test]
     fn abs_min() {
         let m = [[-1., -2.], [-3., -4.]];
-        assert_eq!(m.abs_min(), -1.);
+        assert_approx_eq!(m.abs_min(), -1.);
     }
 
     #[test]
@@ -66,7 +66,7 @@ mod test {
     #[test]
     fn abs_max() {
         let m = [[-1., -2.], [-3., -4.]];
-        assert_eq!(m.abs_max(), -4.);
+        assert_approx_eq!(m.abs_max(), -4.);
     }
 
     #[test]
