@@ -2,7 +2,7 @@ name: Test
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, fix/slow-coverage ]
   pull_request:
     branches:
       - main
@@ -36,7 +36,10 @@ jobs:
                   --excl-line '#\[|=> panic!|unreachable!|Io\(std::io::Error\)' \
                   --excl-br-line '#\[|=> panic!|unreachable!|assert_..!|assert_approx_eq!' -o ./coverage/lcov.info
       - name: Upload to Codecov
-        uses: codecov/codecov-action@v1.0.2
-        with:
-          file: ${{ steps.coverage.outputs.report }}
-          token: ${{ secrets.CODECOV_TOKEN }}
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+        run: |
+          curl -s https://codecov.io/bash | bash -s -- \
+          -F "unittests" \
+          -f ./coverage/lcov.info
+
