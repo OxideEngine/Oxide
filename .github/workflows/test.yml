@@ -2,7 +2,7 @@ name: Test
 
 on:
   push:
-    branches: [ main, fix/test-workflow ]
+    branches: [ main ]
   pull_request:
     branches:
       - main
