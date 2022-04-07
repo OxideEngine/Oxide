@@ -2,7 +2,7 @@
 
 <img src="./docs/logo.png" width=256 height=256 />
 
-[![License](https://img.shields.io/badge/Licence-MIT-blue.svg)](https://github.com/utilForever/Oxide/blob/master/LICENSE) ![Build](https://github.com/utilForever/Oxide/workflows/Build/badge.svg) ![Audit](https://github.com/utilForever/Oxide/workflows/Audit/badge.svg) ![Test](https://github.com/utilForever/Oxide/workflows/Test/badge.svg) ![Rust](https://github.com/utilForever/Oxide/workflows/Rust/badge.svg) [![codecov](https://codecov.io/gh/utilForever/Oxide/branch/main/graph/badge.svg)](https://codecov.io/gh/utilForever/Oxide) [![Discord](https://img.shields.io/discord/799981980048949258.svg)](https://discord.gg/fAVE3yBENq)
+[![License](https://img.shields.io/badge/Licence-MIT-blue.svg)](https://github.com/OxideEngine/Oxide/blob/master/LICENSE) ![Build](https://github.com/OxideEngine/Oxide/workflows/Build/badge.svg) ![Audit](https://github.com/OxideEngine/Oxide/workflows/Audit/badge.svg) ![Test](https://github.com/OxideEngine/Oxide/workflows/Test/badge.svg) ![Rust](https://github.com/OxideEngine/Oxide/workflows/Rust/badge.svg) [![codecov](https://codecov.io/gh/OxideEngine/Oxide/branch/main/graph/badge.svg)](https://codecov.io/gh/OxideEngine/Oxide) [![Discord](https://img.shields.io/discord/799981980048949258.svg)](https://discord.gg/fAVE3yBENq)
 
 Oxide is a cross-platform game engine written in Rust.
 
