@@ -43,5 +43,4 @@ jobs:
           token: ${{ secrets.CODECOV_TEST_TOKEN }}
           files: ./coverage/lcov.info
           flags: unittests
-          verbose: true
 
