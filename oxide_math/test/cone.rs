@@ -1,7 +1,7 @@
 #[cfg(test)]
 mod test {
-    use crate::components::position::*;
     use crate::components::cone::*;
+    use crate::components::position::*;
     use crate::helpers::size_helpers::*;
     use legion::*;
 

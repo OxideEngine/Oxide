@@ -1,7 +1,7 @@
 #[cfg(test)]
 mod test {
-    use crate::components::position::*;
     use crate::components::circle::*;
+    use crate::components::position::*;
     use crate::helpers::size_helpers::*;
     use legion::*;
 
@@ -24,7 +24,7 @@ mod test {
     #[test]
     fn reset_radius() {
         let mut world = World::default();
-        let circle_entity: Entity = world.push((Circle { radius: 1.0f32, },));
+        let circle_entity: Entity = world.push((Circle { radius: 1.0f32 },));
         set_circle_size(&mut world, &circle_entity, 2.0f32);
 
         if let Some(entry) = world.entry(circle_entity) {
@@ -37,7 +37,7 @@ mod test {
     #[should_panic]
     fn negative_radius() {
         let mut world = World::default();
-        let circle_entity: Entity = world.push((Circle { radius: 1.0f32, },));
+        let circle_entity: Entity = world.push((Circle { radius: 1.0f32 },));
         set_circle_size(&mut world, &circle_entity, -2.0f32);
 
         if let Some(entry) = world.entry(circle_entity) {
@@ -50,7 +50,7 @@ mod test {
     #[should_panic]
     fn zero_radius() {
         let mut world = World::default();
-        let circle_entity: Entity = world.push((Circle { radius: 1.0f32, },));
+        let circle_entity: Entity = world.push((Circle { radius: 1.0f32 },));
         set_circle_size(&mut world, &circle_entity, 0.0f32);
 
         if let Some(entry) = world.entry(circle_entity) {

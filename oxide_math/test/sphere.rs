@@ -24,7 +24,7 @@ mod test {
     #[test]
     fn reset_radius() {
         let mut world = World::default();
-        let sphere_entity: Entity = world.push((Sphere { radius: 1.0f32, },));
+        let sphere_entity: Entity = world.push((Sphere { radius: 1.0f32 },));
         set_sphere_size(&mut world, &sphere_entity, 2.0f32);
 
         if let Some(entry) = world.entry(sphere_entity) {
@@ -37,7 +37,7 @@ mod test {
     #[should_panic]
     fn negative_radius() {
         let mut world = World::default();
-        let sphere_entity: Entity = world.push((Sphere { radius: 1.0f32, },));
+        let sphere_entity: Entity = world.push((Sphere { radius: 1.0f32 },));
         set_sphere_size(&mut world, &sphere_entity, -2.0f32);
 
         if let Some(entry) = world.entry(sphere_entity) {
@@ -50,7 +50,7 @@ mod test {
     #[should_panic]
     fn zero_radius() {
         let mut world = World::default();
-        let sphere_entity: Entity = world.push((Sphere { radius: 1.0f32, },));
+        let sphere_entity: Entity = world.push((Sphere { radius: 1.0f32 },));
         set_sphere_size(&mut world, &sphere_entity, 0.0f32);
 
         if let Some(entry) = world.entry(sphere_entity) {

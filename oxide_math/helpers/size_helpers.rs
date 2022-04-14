@@ -25,7 +25,7 @@ pub fn set_cone_size(world: &mut World, entity: &Entity, radius: f32, height: f3
             Ok(comp) => {
                 comp.radius = radius;
                 comp.height = height;
-            },
+            }
             Err(_) => panic!("Cone component does not exist"),
         }
     }
@@ -54,7 +54,7 @@ pub fn set_cylinder_size(world: &mut World, entity: &Entity, radius: f32, height
             Ok(comp) => {
                 comp.radius = radius;
                 comp.height = height;
-            },
+            }
             Err(_) => panic!("Cylinder component does not exist"),
         }
     }
