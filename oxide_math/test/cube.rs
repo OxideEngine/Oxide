@@ -1,7 +1,7 @@
 #[cfg(test)]
 mod test {
-    use crate::components::position::*;
     use crate::components::cube::*;
+    use crate::components::position::*;
     use crate::helpers::size_helpers::*;
     use legion::*;
 
@@ -105,7 +105,7 @@ mod test {
         let rect_entity: Entity = world.push((Cube {
             width: 1.0f32,
             height: 1.0f32,
-            length: 1.0f32
+            length: 1.0f32,
         },));
         set_cube_size(&mut world, &rect_entity, -2.0f32, -3.0f32, -4.0f32);
 
@@ -124,7 +124,7 @@ mod test {
         let rect_entity: Entity = world.push((Cube {
             width: 1.0f32,
             height: 1.0f32,
-            length: 1.0f32
+            length: 1.0f32,
         },));
         set_cube_size(&mut world, &rect_entity, 0.0f32, 3.0f32, 4.0f32);
 
@@ -143,7 +143,7 @@ mod test {
         let rect_entity: Entity = world.push((Cube {
             width: 1.0f32,
             height: 1.0f32,
-            length: 1.0f32
+            length: 1.0f32,
         },));
         set_cube_size(&mut world, &rect_entity, 2.0f32, 0.0f32, 4.0f32);
 
@@ -162,7 +162,7 @@ mod test {
         let rect_entity: Entity = world.push((Cube {
             width: 1.0f32,
             height: 1.0f32,
-            length: 1.0f32
+            length: 1.0f32,
         },));
         set_cube_size(&mut world, &rect_entity, 2.0f32, 3.0f32, 0.0f32);
 
@@ -181,7 +181,7 @@ mod test {
         let rect_entity: Entity = world.push((Cube {
             width: 1.0f32,
             height: 1.0f32,
-            length: 1.0f32
+            length: 1.0f32,
         },));
         set_cube_size(&mut world, &rect_entity, 0.0f32, 0.0f32, 0.0f32);
 
