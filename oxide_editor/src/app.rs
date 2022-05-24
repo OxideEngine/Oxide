@@ -18,6 +18,7 @@ impl epi::App for TemplateApp {
             viewport.ui(ui, egui::vec2(2000.0, 1000.0));
 
             egui::Window::new("Content Drawer")
+                .anchor(eframe::emath::Align2::LEFT_BOTTOM, [0.0, 0.0])
                 .collapsible(true)
                 .vscroll(true)
                 .hscroll(true)
