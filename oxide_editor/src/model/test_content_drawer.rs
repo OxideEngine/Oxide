@@ -16,12 +16,14 @@ mod tests {
         let content_drawer_model = ContentDrawerModel::default();
         let list = content_drawer_model.list_current().unwrap();
 
-        let expected: Vec<Option<PathBuf>> = Path::new("./").read_dir().unwrap().map(|content| {
-            match content {
+        let expected: Vec<Option<PathBuf>> = Path::new("./")
+            .read_dir()
+            .unwrap()
+            .map(|content| match content {
                 Ok(content) => Some(content.path()),
                 Err(_) => None,
-            }
-        }).collect();
+            })
+            .collect();
 
         assert_eq!(expected, list);
     }
