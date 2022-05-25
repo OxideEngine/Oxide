@@ -1,6 +1,6 @@
 mod app;
 mod components;
-mod model;
+mod models;
 
 fn main() {
     let app = app::TemplateApp::default();

@@ -2,7 +2,7 @@
 mod tests {
     use std::path::{Path, PathBuf};
 
-    use crate::model::content_drawer::ContentDrawerModel;
+    use crate::models::content_drawer::ContentDrawerModel;
 
     #[test]
     fn test_default_constructor() {
