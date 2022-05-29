@@ -9,7 +9,7 @@ authors = [
     "Seokwon Moon <artichoke42@naver.com>",
     "Oxide Engine"
 ]
-edition = "2018"
+edition = "2021"
 description = "Rendering library for Oxide"
 
 repository = "https://github.com/OxideEngine/Oxide"

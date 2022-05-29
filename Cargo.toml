@@ -9,7 +9,7 @@ authors = [
     "Seokwon Moon <artichoke42@naver.com>",
     "Oxide Engine"
 ]
-edition = "2018"
+edition = "2021"
 description = "A cross-platform game engine written in Rust"
 keywords = [ "game", "engine", "oxide" ]
 categories = ["game-engines"]
