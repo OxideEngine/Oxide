@@ -1,5 +1,7 @@
 mod app;
 mod components;
+mod views;
+mod viewmodels;
 mod models;
 
 fn main() {
