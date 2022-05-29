@@ -1,17 +1,17 @@
-use eframe::{egui, epi};
+use eframe::egui;
 
 use crate::{components, viewmodels::content_drawer::ContentDrawerViewModel, views};
 
-pub struct TemplateApp;
+pub struct App;
 
-impl Default for TemplateApp {
+impl Default for App {
     fn default() -> Self {
         Self {}
     }
 }
 
-impl epi::App for TemplateApp {
-    fn update(&mut self, ctx: &eframe::egui::Context, _frame: &epi::Frame) {
+impl eframe::App for App {
+    fn update(&mut self, ctx: &eframe::egui::Context, _frame: &mut eframe::Frame) {
         egui::CentralPanel::default().show(ctx, |ui| {
             ui.heading("viewport");
             let mut viewport = components::viewport::ViewPort::default();
@@ -19,9 +19,5 @@ impl epi::App for TemplateApp {
 
             views::content_drawer::content_drawer(ui, ctx, ContentDrawerViewModel::default());
         });
-    }
-
-    fn name(&self) -> &str {
-        "Oxide Engine"
     }
 }
