@@ -1,7 +1,6 @@
 use app::App;
 
 mod app;
-mod components;
 mod models;
 mod viewmodels;
 mod views;
