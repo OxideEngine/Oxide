@@ -1,8 +1,8 @@
 mod app;
 mod components;
-mod views;
-mod viewmodels;
 mod models;
+mod viewmodels;
+mod views;
 
 fn main() {
     let app = app::TemplateApp::default();
