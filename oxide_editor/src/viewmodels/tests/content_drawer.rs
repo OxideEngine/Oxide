@@ -1,8 +1,6 @@
 use std::path::{Path, PathBuf};
 
-use crate::{
-    models::filesystem::Filesystem, viewmodels::content_drawer::ContentDrawerViewModel,
-};
+use crate::{models::filesystem::Filesystem, viewmodels::content_drawer::ContentDrawerViewModel};
 
 #[test]
 fn test_default_constructor() {
