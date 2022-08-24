@@ -3,6 +3,9 @@ use app::App;
 mod app;
 mod widgets;
 
+#[cfg(test)]
+mod test;
+
 fn main() {
     let native_options = eframe::NativeOptions {
         maximized: true,

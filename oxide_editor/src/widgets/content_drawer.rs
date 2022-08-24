@@ -1,14 +1,24 @@
+use std::fs;
+
 use eframe::{
     egui::{Sense, Widget},
     epaint::Stroke,
 };
 
-#[must_use = "You should put this widget in an ui with `ui.add(widget);`"]
-pub struct ContentDrawer {}
+pub struct ContentDrawer {
+    pub location: String,
+}
 
 impl ContentDrawer {
-    pub fn new() -> Self {
-        Self {}
+    pub fn new(location: &str) -> Self {
+        Self {
+            location: location.to_string(),
+        }
+    }
+
+    pub fn list_location(self: &Self) -> Vec<String> {
+        let paths = fs::read_dir(&self.location).unwrap();
+        paths.map(|path| path.unwrap().file_name().to_str().unwrap().to_string()).collect()
     }
 }
 
