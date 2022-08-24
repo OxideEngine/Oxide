@@ -1,6 +1,6 @@
 use eframe::egui;
 
-use crate::views::content_drawer::ContentDrawer;
+use crate::widgets::content_drawer::ContentDrawer;
 
 pub struct App;
 

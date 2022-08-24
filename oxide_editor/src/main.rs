@@ -1,9 +1,7 @@
 use app::App;
 
 mod app;
-mod models;
-mod viewmodels;
-mod views;
+mod widgets;
 
 fn main() {
     let native_options = eframe::NativeOptions {
