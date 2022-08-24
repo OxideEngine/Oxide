@@ -1,39 +1,34 @@
-use eframe::egui;
+use eframe::{egui::{Widget, Sense}, epaint::{Shape, Stroke}, emath::{Pos2, pos2}};
 
-use crate::viewmodels;
+#[must_use = "You should put this widget in an ui with `ui.add(widget);`"]
+pub struct ContentDrawer {}
 
-pub fn content_drawer(
-    ui: &mut egui::Ui,
-    ctx: &egui::Context,
-    vm: viewmodels::content_drawer::ContentDrawerViewModel,
-) {
-    match vm.list_current() {
-        Some(contents) => {
-            egui::Window::new("Content Drawer")
-                .anchor(eframe::emath::Align2::LEFT_BOTTOM, [0.0, 0.0])
-                .collapsible(true)
-                .vscroll(true)
-                .hscroll(true)
-                .default_width(ui.available_width())
-                .show(ctx, |ui| {
-                    ui.with_layout(
-                        egui::Layout::left_to_right()
-                            .with_main_wrap(true)
-                            .with_main_justify(true)
-                            .with_cross_justify(true),
-                        |ui| {
-                            for content in contents {
-                                match content {
-                                    Some(path) => {
-                                        ui.label(path.to_str().unwrap());
-                                    }
-                                    None => {}
-                                }
-                            }
-                        },
-                    )
-                });
-        }
-        None => {}
+impl ContentDrawer {
+    pub fn new() -> Self {
+        Self {}
+    }
+}
+
+impl Widget for ContentDrawer {
+    fn ui(self, ui: &mut eframe::egui::Ui) -> eframe::egui::Response {
+        let width = ui.available_width();
+        let height = 100.0;
+        let (outer_rect, resp) = ui.allocate_at_least(
+            eframe::emath::Vec2 { 
+                x: width, 
+                y: height 
+            },
+            Sense::click(),
+        );
+
+        let visuals = ui.style().visuals.clone();
+        ui.painter().rect(
+            outer_rect, 
+            0.0, 
+            visuals.extreme_bg_color, 
+            Stroke::none(),
+        );
+
+        resp
     }
 }

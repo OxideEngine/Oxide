@@ -1,6 +1,6 @@
 use eframe::egui;
 
-use crate::{viewmodels::content_drawer::ContentDrawerViewModel, views};
+use crate::views::content_drawer::ContentDrawer;
 
 pub struct App;
 
@@ -13,7 +13,7 @@ impl Default for App {
 impl eframe::App for App {
     fn update(&mut self, ctx: &eframe::egui::Context, _frame: &mut eframe::Frame) {
         egui::CentralPanel::default().show(ctx, |ui| {
-            views::content_drawer::content_drawer(ui, ctx, ContentDrawerViewModel::default());
+            ui.add(ContentDrawer::new());
         });
     }
 }
