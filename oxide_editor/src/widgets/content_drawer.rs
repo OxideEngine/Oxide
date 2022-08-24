@@ -1,9 +1,7 @@
 use std::fs;
 
-use eframe::{
-    egui::{Sense, Widget},
-    epaint::Stroke,
-};
+use eframe::egui::Widget;
+
 
 pub struct ContentDrawer {
     pub location: String,
@@ -24,20 +22,13 @@ impl ContentDrawer {
 
 impl Widget for ContentDrawer {
     fn ui(self, ui: &mut eframe::egui::Ui) -> eframe::egui::Response {
-        let width = ui.available_width();
-        let height = 100.0;
-        let (outer_rect, resp) = ui.allocate_at_least(
-            eframe::emath::Vec2 {
-                x: width,
-                y: height,
-            },
-            Sense::click(),
-        );
-
-        let visuals = ui.style().visuals.clone();
-        ui.painter()
-            .rect(outer_rect, 0.0, visuals.extreme_bg_color, Stroke::none());
-
-        resp
+        ui.vertical(|ui| {
+            ui.label("Content Drawer");
+            ui.horizontal(|ui| {
+                self.list_location().iter().for_each(move |path| {
+                    ui.label(path);
+                })
+            });
+        }).response
     }
 }
