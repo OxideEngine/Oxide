@@ -1,0 +1,25 @@
+[package]
+name = "oxide_physics"
+version = "0.0.1"
+authors = [
+    "Chris Ohk <utilforever@gmail.com>",
+    "Changseo Jang <beleap@beleap.codes>",
+    "Yongwook Choi <hyperflow@kakao.com>",
+    "Chaneun Yeo <yce1014@naver.com>",
+    "Seokwon Moon <artichoke42@naver.com>",
+    "Oxide Engine"
+]
+edition = "2021"
+description = "Physics library for Oxide"
+
+repository = "https://github.com/OxideEngine/Oxide"
+
+license = "MIT"
+
+[lib]
+name = "oxide_physics"
+path = "src/lib.rs"
+
+[dependencies]
+oxide_math = {path = "../oxide_math", version = "0.0.1"}
+num-traits = "0.2"
