@@ -1,20 +1,11 @@
 [package]
 name = "oxide_core"
 version = "0.0.1"
-authors = [
-    "Chris Ohk <utilforever@gmail.com>",
-    "Changseo Jang <beleap@beleap.codes>",
-    "Yongwook Choi <hyperflow@kakao.com>",
-    "Chaneun Yeo <yce1014@naver.com>",
-    "Seokwon Moon <artichoke42@naver.com>",
-    "Oxide Engine"
-]
-edition = "2021"
+authors.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
 description = "Oxide core"
-
-repository = "https://github.com/OxideEngine/Oxide"
-
-license = "MIT"
 
 [lib]
 name = "oxide_core"
