@@ -19,7 +19,9 @@ fn main() {
 }
 
 #[derive(Default)]
-pub struct App;
+pub struct App {
+    content_drawer: ContentDrawer,
+}
 
 impl App {
     fn new(_cc: &eframe::CreationContext<'_>) -> Self {
@@ -30,7 +32,7 @@ impl App {
 impl eframe::App for App {
     fn update(&mut self, ctx: &eframe::egui::Context, _frame: &mut eframe::Frame) {
         egui::CentralPanel::default().show(ctx, |ui| {
-            ui.add(ContentDrawer::new("./"));
+            ui.add(self.content_drawer.clone());
         });
     }
 }

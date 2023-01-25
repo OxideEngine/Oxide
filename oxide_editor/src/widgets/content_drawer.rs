@@ -1,23 +1,33 @@
-use std::fs;
+use std::{
+    fs,
+    path::{Path, PathBuf},
+    sync::{Arc, Mutex}, cell::RefCell,
+};
 
-use eframe::egui::Widget;
+use eframe::egui::*;
 
+struct ContentDrawerState {
+    pub location: RefCell<PathBuf>,
+}
+
+#[derive(Clone)]
 pub struct ContentDrawer {
-    pub location: String,
+    state: Arc<Mutex<ContentDrawerState>>,
 }
 
 impl ContentDrawer {
-    pub fn new(location: &str) -> Self {
+    pub fn new(location: PathBuf) -> Self {
         Self {
-            location: location.to_string(),
+            state: Arc::new(Mutex::new(ContentDrawerState { 
+                location: RefCell::new(location) ,
+            })),
         }
     }
+}
 
-    pub fn list_location(self: &Self) -> Vec<String> {
-        let paths = fs::read_dir(&self.location).unwrap();
-        paths
-            .map(|path| path.unwrap().file_name().to_str().unwrap().to_string())
-            .collect()
+impl Default for ContentDrawer {
+    fn default() -> Self {
+        Self::new(Path::new(".").to_path_buf())
     }
 }
 
@@ -25,11 +35,38 @@ impl Widget for ContentDrawer {
     fn ui(self, ui: &mut eframe::egui::Ui) -> eframe::egui::Response {
         ui.vertical(|ui| {
             ui.label("Content Drawer");
-            ui.horizontal(|ui| {
-                self.list_location().iter().for_each(move |path| {
-                    ui.label(path);
-                })
-            });
+            let state_arc = self.state.clone();
+            if let Ok(state) = state_arc.lock() {
+                ui.label(&state.location.borrow().to_str().unwrap().to_string());
+
+                if ui.add(Button::new("<")).clicked() {
+                    let mut location = state.location.borrow_mut();
+                    if let Some(parent) = location.parent() {
+                        let foo: PathBuf = parent.to_path_buf();
+                        *location = foo;
+                    }
+                }
+            }
+
+            if let Ok(mut state) = state_arc.clone().lock() {
+                let location = &state.location;
+                let paths = fs::read_dir(
+                    location.borrow().to_str().unwrap()
+                ).unwrap();
+                ui.horizontal(|ui| {
+                    for path in paths.into_iter() {
+                        let path_buf = path.unwrap().path();
+                        let path: RefCell<&Path> = RefCell::new(path_buf.as_ref());
+
+                        if ui.add(Button::new(path.borrow().file_name().unwrap().to_str().unwrap())).clicked() {
+                            if path.borrow().is_dir() {
+                                state.location = path.borrow().to_path_buf().into();
+                            }
+                        }
+                    }
+
+                });
+            }
         })
         .response
     }
