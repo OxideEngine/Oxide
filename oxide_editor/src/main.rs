@@ -1,5 +1,5 @@
-use eframe::egui;
 use crate::widgets::content_drawer::ContentDrawer;
+use eframe::egui;
 
 mod widgets;
 
