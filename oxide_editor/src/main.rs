@@ -1,6 +1,6 @@
-use app::App;
+use crate::widgets::content_drawer::ContentDrawer;
+use eframe::egui;
 
-mod app;
 mod widgets;
 
 #[cfg(test)]
@@ -14,6 +14,23 @@ fn main() {
     eframe::run_native(
         "Oxide Engine",
         native_options,
-        Box::new(|_cc| Box::new(App::default())),
+        Box::new(|cc| Box::new(App::new(cc))),
     );
+}
+
+#[derive(Default)]
+pub struct App;
+
+impl App {
+    fn new(_cc: &eframe::CreationContext<'_>) -> Self {
+        Self::default()
+    }
+}
+
+impl eframe::App for App {
+    fn update(&mut self, ctx: &eframe::egui::Context, _frame: &mut eframe::Frame) {
+        egui::CentralPanel::default().show(ctx, |ui| {
+            ui.add(ContentDrawer::new("./"));
+        });
+    }
 }
