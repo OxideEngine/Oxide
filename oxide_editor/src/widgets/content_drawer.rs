@@ -1,7 +1,8 @@
 use std::{
+    cell::RefCell,
     fs,
     path::{Path, PathBuf},
-    sync::{Arc, Mutex}, cell::RefCell,
+    sync::{Arc, Mutex},
 };
 
 use eframe::egui::*;
@@ -18,8 +19,8 @@ pub struct ContentDrawer {
 impl ContentDrawer {
     pub fn new(location: PathBuf) -> Self {
         Self {
-            state: Arc::new(Mutex::new(ContentDrawerState { 
-                location: RefCell::new(location) ,
+            state: Arc::new(Mutex::new(ContentDrawerState {
+                location: RefCell::new(location),
             })),
         }
     }
@@ -50,21 +51,23 @@ impl Widget for ContentDrawer {
 
             if let Ok(mut state) = state_arc.clone().lock() {
                 let location = &state.location;
-                let paths = fs::read_dir(
-                    location.borrow().to_str().unwrap()
-                ).unwrap();
+                let paths = fs::read_dir(location.borrow().to_str().unwrap()).unwrap();
                 ui.horizontal(|ui| {
                     for path in paths.into_iter() {
                         let path_buf = path.unwrap().path();
                         let path: RefCell<&Path> = RefCell::new(path_buf.as_ref());
 
-                        if ui.add(Button::new(path.borrow().file_name().unwrap().to_str().unwrap())).clicked() {
+                        if ui
+                            .add(Button::new(
+                                path.borrow().file_name().unwrap().to_str().unwrap(),
+                            ))
+                            .clicked()
+                        {
                             if path.borrow().is_dir() {
                                 state.location = path.borrow().to_path_buf().into();
                             }
                         }
                     }
-
                 });
             }
         })
