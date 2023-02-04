@@ -1,4 +1,5 @@
-// use std::ops::Add;
+#![allow(dead_code)]
+#![allow(unused_variables)]
 
 use oxide_math::commons::vector::*;
 use oxide_math::commons::vector3::Vector3;
@@ -22,9 +23,9 @@ impl Particle {
         assert!(duration > 0.0);
 
         // update linear position
-        self.position.x = self.position.x + self.velocity.scale(duration).x;
-        self.position.y = self.position.y + self.velocity.scale(duration).y;
-        self.position.z = self.position.z + self.velocity.scale(duration).z;
+        self.position.x += self.velocity.scale(duration).x;
+        self.position.y += self.velocity.scale(duration).y;
+        self.position.z += self.velocity.scale(duration).z;
 
         // work out the acceleration from the force
         let mut resulting_acc = Vector3 {
@@ -35,9 +36,9 @@ impl Particle {
         resulting_acc = resulting_acc + self.force_accum.scale(self.inverse_mass);
 
         // update linear velocity from the acceleration
-        self.velocity.x = self.velocity.x + resulting_acc.scale(duration).x;
-        self.velocity.y = self.velocity.y + resulting_acc.scale(duration).y;
-        self.velocity.z = self.velocity.z + resulting_acc.scale(duration).z;
+        self.velocity.x += resulting_acc.scale(duration).x;
+        self.velocity.y += resulting_acc.scale(duration).y;
+        self.velocity.z += resulting_acc.scale(duration).z;
 
         // impose drag
         self.velocity = self.velocity.scale(pow(self.damping, duration as usize));
