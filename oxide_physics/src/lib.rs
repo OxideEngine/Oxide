@@ -1,4 +1,5 @@
 pub mod particle;
+pub mod pfgen;
 
 #[cfg(test)]
 mod tests {

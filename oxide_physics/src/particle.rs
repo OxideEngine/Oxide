@@ -5,7 +5,7 @@ use oxide_math::commons::vector::*;
 use oxide_math::commons::vector3::Vector3;
 use num_traits::pow;
 
-struct Particle {
+pub struct Particle {
     inverse_mass: f32,
     damping: f32,
     position: Vector3,
@@ -51,7 +51,7 @@ impl Particle {
         self.inverse_mass = (1.0f32) / mass;
     }
 
-    fn get_mass(&mut self) -> f32 {
+    pub fn get_mass(&self) -> f32 {
         if self.inverse_mass == 0.0f32 {
             f32::MAX
         } else {
@@ -67,7 +67,7 @@ impl Particle {
         self.inverse_mass
     }
 
-    fn has_finite_mass(&mut self) -> bool {
+    pub fn has_finite_mass(&mut self) -> bool {
         self.inverse_mass >= 0.0f32
     }
 
@@ -145,7 +145,7 @@ impl Particle {
         self.force_accum.z = 0.0f32;
     }
 
-    fn add_force(&mut self, force: &Vector3) {
+    pub fn add_force(&mut self, force: &Vector3) {
         self.force_accum.x += force.x;
         self.force_accum.y += force.y;
         self.force_accum.z += force.z;
