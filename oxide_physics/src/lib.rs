@@ -1,5 +1,6 @@
 pub mod particle;
 pub mod pfgen;
+pub mod collide_broad_phase;
 
 #[cfg(test)]
 mod tests {

@@ -1,4 +1,8 @@
 
+struct PotentialContact {
+	body: RigidBody,
+}
+
 pub trait BoundingVolume {
     // check if the bounding volume intersects with another one
     fn intersects(&self, _: &Self) -> bool;

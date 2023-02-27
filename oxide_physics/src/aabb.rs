@@ -36,6 +36,5 @@ impl BoundingVolume for AABB {
         self.maxs.y >= other.maxs.y &&
         self.mins.z <= other.maxs.z &&
         self.maxs.z >= other.maxs.z
-
     }
 }

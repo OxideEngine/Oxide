@@ -5,11 +5,14 @@ use oxide_math::commons::vector::*;
 use oxide_math::commons::vector3::Vector3;
 use num_traits::pow;
 
+extern crate generational_arena;
+use generational_arena::Arena;
+
 pub struct Particle {
     inverse_mass: f32,
     damping: f32,
     position: Vector3,
-    velocity: Vector3,
+    pub velocity: Vector3,
     force_accum: Vector3,
     acceleration: Vector3,
 }
@@ -28,12 +31,12 @@ impl Particle {
         self.position.z += self.velocity.scale(duration).z;
 
         // work out the acceleration from the force
-        let mut resulting_acc = Vector3 {
-            x: self.acceleration.x,
-            y: self.acceleration.y,
-            z: self.acceleration.z,
+		let delta = self.force_accum.scale(self.inverse_mass);
+        let resulting_acc = Vector3 {
+            x: self.acceleration.x + delta.x,
+            y: self.acceleration.y + delta.y,
+            z: self.acceleration.z + delta.z,
         };
-        resulting_acc = resulting_acc + self.force_accum.scale(self.inverse_mass);
 
         // update linear velocity from the acceleration
         self.velocity.x += resulting_acc.scale(duration).x;
@@ -67,7 +70,7 @@ impl Particle {
         self.inverse_mass
     }
 
-    pub fn has_finite_mass(&mut self) -> bool {
+    pub fn has_finite_mass(&self) -> bool {
         self.inverse_mass >= 0.0f32
     }
 
@@ -75,39 +78,47 @@ impl Particle {
         self.damping = damping;
     }
 
-    fn get_damping(&mut self) -> f32 {
+    fn get_damping(&self) -> f32 {
         self.damping
     }
 
     fn set_position(&mut self, position: &Vector3) {
-        self.position.x = position.x;
-        self.position.y = position.y;
-        self.position.z = position.z;
+        self.position = Vector3 {
+			x: position.x,
+			y: position.y,
+			z: position.z,
+		};
     }
 
     fn set_position_by_coord(&mut self, x: f32, y: f32, z: f32) {
-        self.position.x = x;
-        self.position.y = y;
-        self.position.z = z;
+        self.position = Vector3 {
+			x,
+			y,
+			z,
+		}
     }
 
-    fn get_position(&mut self) -> &Vector3 {
+    fn get_position(&self) -> &Vector3 {
        &self.position
     }
 
     fn set_velocity(&mut self, velocity: &Vector3) {
-        self.velocity.x = velocity.x;
-        self.velocity.y = velocity.y;
-        self.velocity.z = velocity.z;
+        self.velocity = Vector3 {
+			x: velocity.x,
+			y: velocity.y,
+			z: velocity.z,
+		};
     }
 
     fn set_velocity_by_coord(&mut self, x: f32, y: f32, z: f32) {
-        self.velocity.x = x;
-        self.velocity.y = y;
-        self.velocity.z = z;
+        self.velocity = Vector3 {
+			x,
+			y,
+			z,
+		}
     }
 
-    fn get_velocity_into_vec(&mut self, velocity: &mut Vector3) {
+    fn get_velocity_into_vec(&self, velocity: &mut Vector3) {
         velocity.x = self.velocity.x;
         velocity.y = self.velocity.y;
         velocity.z = self.velocity.z;
@@ -118,36 +129,75 @@ impl Particle {
     }
 
     fn set_acceleration(&mut self, acceleration: &Vector3) {
-        self.acceleration.x = acceleration.x;
-        self.acceleration.y = acceleration.y;
-        self.acceleration.z = acceleration.z;
+        self.acceleration = Vector3 {
+			x: acceleration.x,
+			y: acceleration.y,
+			z: acceleration.z,
+		} 
     }
 
     fn set_acceleration_by_coord(&mut self, x: f32, y: f32, z: f32) {
-        self.acceleration.x = x;
-        self.acceleration.y = y;
-        self.acceleration.z = z;
+        self.acceleration = Vector3 {
+			x,
+			y,
+			z,
+		}
     }
 
-    fn get_acceleration_into_vec(&mut self, acceleration: &mut Vector3) {
+    fn get_acceleration_into_vec(&self, acceleration: &mut Vector3) {
         acceleration.x = self.acceleration.x;
         acceleration.y = self.acceleration.y;
         acceleration.z = self.acceleration.z;
     }
 
-    fn get_acceleration(&mut self) -> &Vector3 {
+    fn get_acceleration(&self) -> &Vector3 {
         &self.acceleration
     }
 
     fn clear_accumulator(&mut self) {
-        self.force_accum.x = 0.0f32;
-        self.force_accum.y = 0.0f32;
-        self.force_accum.z = 0.0f32;
+        self.force_accum = Vector3 {
+			x: 0.0f32,
+			y: 0.0f32,
+			z: 0.0f32,
+		};
     }
 
     pub fn add_force(&mut self, force: &Vector3) {
-        self.force_accum.x += force.x;
-        self.force_accum.y += force.y;
-        self.force_accum.z += force.z;
+		self.force_accum = Vector3 {
+			x: self.force_accum.x + force.x,
+			y: self.force_accum.y + force.y,
+			z: self.force_accum.z + force.z,
+		};
     }
 }
+
+// The default particle set containing all the particles added to the world
+// Uses arena to avoid ABA problem
+pub struct DefaultParticleSet {
+	particles: Arena<Box<Particle>>,
+	removed: Vec<DefaultParticleHandle>,
+}
+
+impl DefaultParticleSet {
+	// Creates an empty set
+	pub fn new() -> Self {
+		DefaultParticleSet {
+			particles: Arena::new(),
+			removed: Vec::new(),
+		}
+	}
+
+	// Adds a particle to this set
+	pub fn insert(&mut self, particle: Particle) -> DefaultParticleHandle {
+		self.particles.insert(Box::new(particle))
+	}
+
+	// Removes a particle from this set
+	pub fn remove(&mut self, particle_handle: DefaultParticleHandle) -> Option<Box<Particle>> {
+		let result = self.particles.remove(particle_handle)?;
+		self.removed.push(particle_handle);
+		Some(result)
+	}
+}
+
+pub type DefaultParticleHandle = generational_arena::Index;
