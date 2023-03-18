@@ -200,4 +200,10 @@ impl DefaultParticleSet {
 	}
 }
 
+impl Default for DefaultParticleSet {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 pub type DefaultParticleHandle = generational_arena::Index;
