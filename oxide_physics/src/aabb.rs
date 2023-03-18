@@ -8,14 +8,14 @@ pub struct AABB {
 
 pub fn aabb<S>(shape: &S, tv: Vector3) -> AABB
 where
-    S: HasBoundingVolume<AABB>
+    S: HasBoundingVolume<AABB>,
 {
     shape.bounding_volume(tv)
 }
 
 pub fn local_aabb<S>(shape: &S) -> AABB
 where
-    S: HasBoundingVolume<AABB>
+    S: HasBoundingVolume<AABB>,
 {
     shape.local_bounding_volume()
 }
@@ -32,35 +32,35 @@ impl AABB {
             z: self.mins.z,
         }
     }
- 
+
     pub fn maxs(&self) -> Vector3 {
         Vector3 {
             x: self.maxs.x,
             y: self.maxs.y,
             z: self.maxs.z,
         }
-    }   
+    }
 }
 
 impl BoundingVolume for AABB {
     // check if the bounding volume 'bv' intersects with self
     fn intersects(&self, other: &AABB) -> bool {
-        self.mins.x <= other.maxs.x &&
-        self.mins.y <= other.maxs.y &&
-        self.mins.z <= other.maxs.z &&
-        self.maxs.x >= other.mins.x &&
-        self.maxs.y >= other.mins.y &&
-        self.maxs.z >= other.mins.z
+        self.mins.x <= other.maxs.x
+            && self.mins.y <= other.maxs.y
+            && self.mins.z <= other.maxs.z
+            && self.maxs.x >= other.mins.x
+            && self.maxs.y >= other.mins.y
+            && self.maxs.z >= other.mins.z
     }
 
     // check if self contains the 'bv'
     fn contains(&self, other: &AABB) -> bool {
-        self.mins.x <= other.mins.x &&
-        self.mins.y <= other.mins.y &&
-        self.mins.z <= other.mins.z &&
-        self.maxs.x >= other.maxs.x &&
-        self.maxs.y >= other.maxs.y &&
-        self.maxs.z >= other.maxs.z
+        self.mins.x <= other.mins.x
+            && self.mins.y <= other.mins.y
+            && self.mins.z <= other.mins.z
+            && self.maxs.x >= other.maxs.x
+            && self.maxs.y >= other.maxs.y
+            && self.maxs.z >= other.maxs.z
     }
 
     // merge this bounding volume with the other 'bv'

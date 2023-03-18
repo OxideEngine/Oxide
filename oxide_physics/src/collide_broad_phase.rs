@@ -17,6 +17,10 @@ pub trait HasBoundingVolume<BV> {
     fn bounding_volume(&self, tv: Vector3) -> BV;
 
     fn local_bounding_volume(&self) -> BV {
-        self.bounding_volume(Vector3 {x: 0.0, y: 0.0, z: 0.0})
+        self.bounding_volume(Vector3 {
+            x: 0.0,
+            y: 0.0,
+            z: 0.0,
+        })
     }
 }

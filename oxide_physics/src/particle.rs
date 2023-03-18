@@ -1,9 +1,9 @@
 #![allow(dead_code)]
 #![allow(unused_variables)]
 
+use num_traits::pow;
 use oxide_math::commons::vector::*;
 use oxide_math::commons::vector3::Vector3;
-use num_traits::pow;
 
 extern crate generational_arena;
 use generational_arena::Arena;
@@ -21,7 +21,7 @@ impl Particle {
     fn integrate(&mut self, duration: f32) {
         // not to integrate things with zero mass
         if self.inverse_mass <= 0.0f32 {
-            return ;
+            return;
         }
         assert!(duration > 0.0);
 
@@ -31,7 +31,7 @@ impl Particle {
         self.position.z += self.velocity.scale(duration).z;
 
         // work out the acceleration from the force
-		let delta = self.force_accum.scale(self.inverse_mass);
+        let delta = self.force_accum.scale(self.inverse_mass);
         let resulting_acc = Vector3 {
             x: self.acceleration.x + delta.x,
             y: self.acceleration.y + delta.y,
@@ -84,38 +84,30 @@ impl Particle {
 
     fn set_position(&mut self, position: &Vector3) {
         self.position = Vector3 {
-			x: position.x,
-			y: position.y,
-			z: position.z,
-		};
+            x: position.x,
+            y: position.y,
+            z: position.z,
+        };
     }
 
     fn set_position_by_coord(&mut self, x: f32, y: f32, z: f32) {
-        self.position = Vector3 {
-			x,
-			y,
-			z,
-		}
+        self.position = Vector3 { x, y, z }
     }
 
     fn get_position(&self) -> &Vector3 {
-       &self.position
+        &self.position
     }
 
     fn set_velocity(&mut self, velocity: &Vector3) {
         self.velocity = Vector3 {
-			x: velocity.x,
-			y: velocity.y,
-			z: velocity.z,
-		};
+            x: velocity.x,
+            y: velocity.y,
+            z: velocity.z,
+        };
     }
 
     fn set_velocity_by_coord(&mut self, x: f32, y: f32, z: f32) {
-        self.velocity = Vector3 {
-			x,
-			y,
-			z,
-		}
+        self.velocity = Vector3 { x, y, z }
     }
 
     fn get_velocity_into_vec(&self, velocity: &mut Vector3) {
@@ -130,18 +122,14 @@ impl Particle {
 
     fn set_acceleration(&mut self, acceleration: &Vector3) {
         self.acceleration = Vector3 {
-			x: acceleration.x,
-			y: acceleration.y,
-			z: acceleration.z,
-		} 
+            x: acceleration.x,
+            y: acceleration.y,
+            z: acceleration.z,
+        }
     }
 
     fn set_acceleration_by_coord(&mut self, x: f32, y: f32, z: f32) {
-        self.acceleration = Vector3 {
-			x,
-			y,
-			z,
-		}
+        self.acceleration = Vector3 { x, y, z }
     }
 
     fn get_acceleration_into_vec(&self, acceleration: &mut Vector3) {
@@ -156,48 +144,48 @@ impl Particle {
 
     fn clear_accumulator(&mut self) {
         self.force_accum = Vector3 {
-			x: 0.0f32,
-			y: 0.0f32,
-			z: 0.0f32,
-		};
+            x: 0.0f32,
+            y: 0.0f32,
+            z: 0.0f32,
+        };
     }
 
     pub fn add_force(&mut self, force: &Vector3) {
-		self.force_accum = Vector3 {
-			x: self.force_accum.x + force.x,
-			y: self.force_accum.y + force.y,
-			z: self.force_accum.z + force.z,
-		};
+        self.force_accum = Vector3 {
+            x: self.force_accum.x + force.x,
+            y: self.force_accum.y + force.y,
+            z: self.force_accum.z + force.z,
+        };
     }
 }
 
 // The default particle set containing all the particles added to the world
 // Uses arena to avoid ABA problem
 pub struct DefaultParticleSet {
-	particles: Arena<Box<Particle>>,
-	removed: Vec<DefaultParticleHandle>,
+    particles: Arena<Box<Particle>>,
+    removed: Vec<DefaultParticleHandle>,
 }
 
 impl DefaultParticleSet {
-	// Creates an empty set
-	pub fn new() -> Self {
-		DefaultParticleSet {
-			particles: Arena::new(),
-			removed: Vec::new(),
-		}
-	}
+    // Creates an empty set
+    pub fn new() -> Self {
+        DefaultParticleSet {
+            particles: Arena::new(),
+            removed: Vec::new(),
+        }
+    }
 
-	// Adds a particle to this set
-	pub fn insert(&mut self, particle: Particle) -> DefaultParticleHandle {
-		self.particles.insert(Box::new(particle))
-	}
+    // Adds a particle to this set
+    pub fn insert(&mut self, particle: Particle) -> DefaultParticleHandle {
+        self.particles.insert(Box::new(particle))
+    }
 
-	// Removes a particle from this set
-	pub fn remove(&mut self, particle_handle: DefaultParticleHandle) -> Option<Box<Particle>> {
-		let result = self.particles.remove(particle_handle)?;
-		self.removed.push(particle_handle);
-		Some(result)
-	}
+    // Removes a particle from this set
+    pub fn remove(&mut self, particle_handle: DefaultParticleHandle) -> Option<Box<Particle>> {
+        let result = self.particles.remove(particle_handle)?;
+        self.removed.push(particle_handle);
+        Some(result)
+    }
 }
 
 impl Default for DefaultParticleSet {

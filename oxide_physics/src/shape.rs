@@ -1,5 +1,5 @@
-use oxide_math::commons::vector3::Vector3;
 use crate::aabb::AABB;
+use oxide_math::commons::vector3::Vector3;
 
 pub trait Shape {
     fn bounding_volume(&self) -> AABB;
@@ -42,7 +42,7 @@ impl Cuboid {
         Vector3 {
             x: -self.x,
             y: -self.y,
-            z: -self.z
+            z: -self.z,
         }
     }
 
@@ -50,7 +50,7 @@ impl Cuboid {
         Vector3 {
             x: self.x,
             y: self.y,
-            z: self.z
+            z: self.z,
         }
     }
 }
