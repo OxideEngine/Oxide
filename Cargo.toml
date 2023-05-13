@@ -4,7 +4,7 @@ members = [ "oxide_*" ]
 [workspace.package]
 authors = [
     "Chris Ohk <utilforever@gmail.com>",
-    "Changseo Jang <beleap@beleap.codes>",
+    "Changseo Jang <beleap@beleap.dev>",
     "Yongwook Choi <hyperflow@kakao.com>",
     "Chaneun Yeo <yce1014@naver.com>",
     "Seokwon Moon <artichoke42@naver.com>",
