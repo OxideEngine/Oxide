@@ -1,4 +1,4 @@
-mod Lexer {
+mod lexer {
     mod new {
         use crate::fbx::lexer;
         use std::{io, path::Path};
