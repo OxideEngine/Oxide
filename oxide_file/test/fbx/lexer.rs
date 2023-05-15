@@ -22,5 +22,15 @@ mod lexer {
                 Err(e) => assert_eq!(io::ErrorKind::InvalidData, e.kind()),
             };
         }
+
+        #[test]
+        fn it_should_reject_malformed_unknown_bytes() {
+            let lexer = lexer::Lexer::new(Path::new("testdata/fbx/MalformedUnknownByte.fbx"));
+
+            match lexer {
+                Ok(_) => assert!(false, "it should reject malformed unknown byte fbx file"),
+                Err(e) => assert_eq!(io::ErrorKind::InvalidData, e.kind()),
+            }
+        }
     }
 }
