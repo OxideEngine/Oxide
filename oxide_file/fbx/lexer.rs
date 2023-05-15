@@ -35,10 +35,10 @@ impl Lexer {
         let file = File::open(target_filename)?;
         let mut reader = BufReader::new(file);
 
-        let mut buf = [0; 21];
-        reader.read_exact(&mut buf)?;
+        let mut file_magic = [0; 21];
+        reader.read_exact(&mut file_magic)?;
 
-        if FILE_MAGIC != buf {
+        if FILE_MAGIC != file_magic {
             return Err(io::Error::new(
                 io::ErrorKind::InvalidData,
                 "unmatched FILE_MAGIC",

@@ -5,7 +5,7 @@ mod Lexer {
 
         #[test]
         fn it_should_reject_non_fbx() {
-            let lexer = lexer::Lexer::new(Path::new("testdata/Malformed.fbx"));
+            let lexer = lexer::Lexer::new(Path::new("testdata/fbx/MalformedFileMagic.fbx"));
 
             match lexer {
                 Ok(_) => assert!(false, "it should reject malformed fbx file"),
@@ -15,7 +15,7 @@ mod Lexer {
 
         #[test]
         fn it_should_accept_fbx() {
-            let lexer = lexer::Lexer::new(Path::new("testdata/Cube.fbx"));
+            let lexer = lexer::Lexer::new(Path::new("testdata/fbx/Cube.fbx"));
 
             match lexer {
                 Ok(_) => {}
