@@ -19,7 +19,7 @@ mod lexer {
 
             match lexer {
                 Ok(_) => {}
-                Err(e) => assert!(false, "it should accept fbx file"),
+                Err(_) => assert!(false, "it should accept fbx file"),
             };
         }
     }
