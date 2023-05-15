@@ -27,6 +27,8 @@ const FILE_MAGIC: [u8; 21] = [
     00,
 ];
 
+const UNKNOWN_BYTES: [u8; 2] = [0x1A, 0x00];
+
 #[derive(Debug)]
 pub struct Lexer {}
 
@@ -42,6 +44,16 @@ impl Lexer {
             return Err(io::Error::new(
                 io::ErrorKind::InvalidData,
                 "unmatched FILE_MAGIC",
+            ));
+        }
+
+        let mut unknown_bytes = [0; 2];
+        reader.read_exact(&mut unknown_bytes)?;
+
+        if UNKNOWN_BYTES != unknown_bytes {
+            return Err(io::Error::new(
+                io::ErrorKind::InvalidData,
+                "unmatched UNKNOWN_BYTES",
             ));
         }
 
