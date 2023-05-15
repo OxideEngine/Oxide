@@ -28,9 +28,7 @@ const FILE_MAGIC: [u8; 21] = [
 ];
 
 #[derive(Debug)]
-pub struct Lexer {
-    reader: BufReader<File>,
-}
+pub struct Lexer {}
 
 impl Lexer {
     pub fn new<P: AsRef<Path>>(target_filename: P) -> io::Result<Lexer> {
@@ -47,6 +45,6 @@ impl Lexer {
             ));
         }
 
-        Ok(Lexer { reader })
+        Ok(Lexer {})
     }
 }
