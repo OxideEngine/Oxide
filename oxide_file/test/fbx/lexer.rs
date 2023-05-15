@@ -32,5 +32,15 @@ mod lexer {
                 Err(e) => assert_eq!(io::ErrorKind::InvalidData, e.kind()),
             }
         }
+
+        #[test]
+        fn it_should_reject_without_version_number() {
+            let lexer = lexer::Lexer::new(Path::new("testdata/fbx/WithoutVersionNumber.fbx"));
+
+            match lexer {
+                Ok(_) => assert!(false, "it should reject fbx file without version number"),
+                Err(e) => assert_eq!(io::ErrorKind::InvalidData, e.kind()),
+            }
+        }
     }
 }
