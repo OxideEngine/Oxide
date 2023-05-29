@@ -57,6 +57,10 @@ impl Lexer {
             ));
         }
 
+        let mut version = [0; 4];
+        // Just consume because we do not care about what version of FBX it is currently.
+        reader.read_exact(&mut version)?;
+
         Ok(Lexer {})
     }
 }

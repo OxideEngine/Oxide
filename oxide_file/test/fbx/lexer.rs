@@ -39,7 +39,9 @@ mod lexer {
 
             match lexer {
                 Ok(_) => assert!(false, "it should reject fbx file without version number"),
-                Err(e) => assert_eq!(io::ErrorKind::InvalidData, e.kind()),
+                // Caveat: Read a file without a version field and check for EOF errors to confirm
+                // that we are consuming the version field.
+                Err(e) => assert_eq!(io::ErrorKind::UnexpectedEof, e.kind()),
             }
         }
     }
