@@ -18,12 +18,20 @@ pub struct Particle {
 }
 
 impl Particle {
-    fn integrate(&mut self, duration: f32) {
-        // not to integrate things with zero mass
+    // returns integrated velocity
+    fn integrate(&mut self, duration: f32) -> Result<Vector3, &str> {
+        // not to integrate things with infinite mass
         if self.inverse_mass <= 0.0f32 {
-            return;
+            return Ok(
+                Vector3 { 
+                    x: self.velocity.x, 
+                    y: self.velocity.y, 
+                    z: self.velocity.z,
+                });
         }
-        assert!(duration > 0.0);
+        if duration <= 0.0 {
+            return Err("Cannot integrate with zero duration")
+        }
 
         // update linear position
         self.position.x += self.velocity.scale(duration).x;
@@ -47,13 +55,25 @@ impl Particle {
         self.velocity = self.velocity.scale(pow(self.damping, duration as usize));
 
         Particle::clear_accumulator(self);
+
+        Ok(
+            Vector3 { 
+                x: self.velocity.x, 
+                y: self.velocity.y, 
+                z: self.velocity.z,
+            })
     }
 
-    fn set_mass(&mut self, mass: f32) {
-        assert!(mass != 0.0f32);
+    // Returns inverse of mass
+    fn set_mass(&mut self, mass: f32) -> Result<f32, &str> {
+        if mass == 0.0f32 {
+            return Err("Cannot set zero mass")
+        }
         self.inverse_mass = (1.0f32) / mass;
+        Ok(self.inverse_mass)
     }
 
+    // Returns mass of the particle
     pub fn get_mass(&self) -> f32 {
         if self.inverse_mass == 0.0f32 {
             f32::MAX
@@ -62,84 +82,17 @@ impl Particle {
         }
     }
 
-    fn set_inverse_mass(&mut self, inverse_mass: f32) {
-        self.inverse_mass = inverse_mass;
-    }
-
-    fn get_inverse_mass(&mut self) -> f32 {
-        self.inverse_mass
-    }
-
-    pub fn has_finite_mass(&self) -> bool {
-        self.inverse_mass >= 0.0f32
-    }
-
-    fn set_damping(&mut self, damping: f32) {
-        self.damping = damping;
-    }
-
-    fn get_damping(&self) -> f32 {
-        self.damping
-    }
-
-    fn set_position(&mut self, position: &Vector3) {
-        self.position = Vector3 {
-            x: position.x,
-            y: position.y,
-            z: position.z,
-        };
-    }
-
-    fn set_position_by_coord(&mut self, x: f32, y: f32, z: f32) {
-        self.position = Vector3 { x, y, z }
-    }
-
-    fn get_position(&self) -> &Vector3 {
-        &self.position
-    }
-
-    fn set_velocity(&mut self, velocity: &Vector3) {
-        self.velocity = Vector3 {
-            x: velocity.x,
-            y: velocity.y,
-            z: velocity.z,
-        };
-    }
-
-    fn set_velocity_by_coord(&mut self, x: f32, y: f32, z: f32) {
-        self.velocity = Vector3 { x, y, z }
-    }
-
-    fn get_velocity_into_vec(&self, velocity: &mut Vector3) {
-        velocity.x = self.velocity.x;
-        velocity.y = self.velocity.y;
-        velocity.z = self.velocity.z;
-    }
-
-    fn get_velocity(&mut self) -> &Vector3 {
-        &self.velocity
-    }
-
-    fn set_acceleration(&mut self, acceleration: &Vector3) {
-        self.acceleration = Vector3 {
-            x: acceleration.x,
-            y: acceleration.y,
-            z: acceleration.z,
+    // Returns the velocity of the particle
+    pub fn get_velocity(&self) -> Vector3 {
+        Vector3 {
+            x: self.velocity.x,
+            y: self.velocity.y,
+            z: self.velocity.z,
         }
     }
 
-    fn set_acceleration_by_coord(&mut self, x: f32, y: f32, z: f32) {
-        self.acceleration = Vector3 { x, y, z }
-    }
-
-    fn get_acceleration_into_vec(&self, acceleration: &mut Vector3) {
-        acceleration.x = self.acceleration.x;
-        acceleration.y = self.acceleration.y;
-        acceleration.z = self.acceleration.z;
-    }
-
-    fn get_acceleration(&self) -> &Vector3 {
-        &self.acceleration
+    pub fn has_finite_mass(&self) -> bool {
+        self.inverse_mass > 0.0f32
     }
 
     fn clear_accumulator(&mut self) {
