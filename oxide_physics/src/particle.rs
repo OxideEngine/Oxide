@@ -22,15 +22,14 @@ impl Particle {
     fn integrate(&mut self, duration: f32) -> Result<Vector3, &str> {
         // not to integrate things with infinite mass
         if self.inverse_mass <= 0.0f32 {
-            return Ok(
-                Vector3 { 
-                    x: self.velocity.x, 
-                    y: self.velocity.y, 
-                    z: self.velocity.z,
-                });
+            return Ok(Vector3 {
+                x: self.velocity.x,
+                y: self.velocity.y,
+                z: self.velocity.z,
+            });
         }
         if duration <= 0.0 {
-            return Err("Cannot integrate with zero duration")
+            return Err("Cannot integrate with zero duration");
         }
 
         // update linear position
@@ -56,18 +55,17 @@ impl Particle {
 
         Particle::clear_accumulator(self);
 
-        Ok(
-            Vector3 { 
-                x: self.velocity.x, 
-                y: self.velocity.y, 
-                z: self.velocity.z,
-            })
+        Ok(Vector3 {
+            x: self.velocity.x,
+            y: self.velocity.y,
+            z: self.velocity.z,
+        })
     }
 
     // Returns inverse of mass
     fn set_mass(&mut self, mass: f32) -> Result<f32, &str> {
         if mass == 0.0f32 {
-            return Err("Cannot set zero mass")
+            return Err("Cannot set zero mass");
         }
         self.inverse_mass = (1.0f32) / mass;
         Ok(self.inverse_mass)

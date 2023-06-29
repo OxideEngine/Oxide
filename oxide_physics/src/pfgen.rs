@@ -1,10 +1,12 @@
+#![allow(dead_code)]
+#![allow(unused_variables)]
+
 use crate::particle::*;
 use oxide_math::commons::vector::*;
 use oxide_math::commons::vector3::Vector3;
 use std::vec::Vec;
 
 extern crate generational_arena;
-use generational_arena::Arena;
 
 /*
  * force generator trait
@@ -34,21 +36,22 @@ pub struct ParticleForceRegistry {
 
 impl ParticleForceRegistry {
     pub fn add(&self, particle: DefaultParticleHandle, fg: DefaultForceGeneratorHandle) {
-        /* NOT implemented */
+        todo!()
     }
 
     pub fn remove(&self, particle: DefaultParticleHandle, fg: DefaultForceGeneratorHandle) {
-        /* NOT implemented */
+        todo!()
     }
 
     pub fn clear(&self) {
-        /* NOT implemented */
+        todo!()
     }
 
     pub fn update_forces(&self, duration: f32) {
         // for i in self.registrations.iter_mut() {
         //     i.fg.update_force(i.particle, duration);
         // }
+        todo!()
     }
 }
 
