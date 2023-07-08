@@ -18,6 +18,30 @@ pub struct Particle {
 }
 
 impl Particle {
+    // default mass is set to 1.0
+    fn new(position: Vector3) -> Particle {
+        Particle {
+            inverse_mass: 1.0,
+            damping: 1.0,
+            position: Vector3 {
+                x: 0.0,
+                y: 0.0,
+                z: 0.0,
+            },
+            velocity: position,
+            force_accum: Vector3 {
+                x: 0.0,
+                y: 0.0,
+                z: 0.0,
+            },
+            acceleration: Vector3 {
+                x: 0.0,
+                y: 0.0,
+                z: 0.0,
+            },
+        }
+    }
+
     // returns integrated velocity
     fn integrate(&mut self, duration: f32) -> Result<Vector3, &str> {
         // not to integrate things with infinite mass
@@ -146,3 +170,194 @@ impl Default for DefaultParticleSet {
 }
 
 pub type DefaultParticleHandle = generational_arena::Index;
+
+#[cfg(test)]
+mod tests {
+    use oxide_math::components::velocity::Velocity;
+
+    use super::*;
+
+    #[test]
+    fn test_set_mass() {
+        let mut p = Particle::new(Vector3 {
+            x: 0.0,
+            y: 0.0,
+            z: 0.0,
+        });
+        if let Err(msg) = p.set_mass(5.0) {
+            panic!("{}", msg);
+        }
+        assert_eq!(0.2, p.inverse_mass);
+    }
+
+    #[test]
+    #[should_panic]
+    fn test_bad_set_mass() {
+        let mut p = Particle::new(Vector3 {
+            x: 0.0,
+            y: 0.0,
+            z: 0.0,
+        });
+        if let Err(msg) = p.set_mass(0.0) {
+            panic!("{}", msg);
+        }
+    }
+
+    #[test]
+    fn test_get_mass() {
+        let mut p = Particle::new(Vector3 {
+            x: 0.0,
+            y: 0.0,
+            z: 0.0,
+        });
+        if let Err(msg) = p.set_mass(5.0) {
+            panic!("{}", msg);
+        }
+        assert_eq!(5.0, p.get_mass());
+    }
+
+    #[test]
+    fn test_get_velocity() {
+        let mut p = Particle::new(Vector3 {
+            x: 0.0,
+            y: 0.0,
+            z: 0.0,
+        });
+        if let Err(msg) = p.set_mass(5.0) {
+            panic!("{}", msg);
+        }
+        let f = Vector3 {
+            x: 2.0,
+            y: 0.0,
+            z: 0.0,
+        };
+        p.add_force(&f);
+        p.integrate(1.0).unwrap();
+        assert_eq!(
+            Vector3 {
+                x: 2.0,
+                y: 0.0,
+                z: 0.0
+            },
+            p.get_velocity()
+        );
+    }
+
+    fn test_has_finite_mass() {
+        let mut p = Particle::new(Vector3 {
+            x: 0.0,
+            y: 0.0,
+            z: 0.0,
+        });
+        assert_eq!(true, p.has_finite_mass());
+        let mut q = Particle {
+            inverse_mass: 0.0,
+            damping: 1.0,
+            position: Vector3 {
+                x: 0.0,
+                y: 0.0,
+                z: 0.0,
+            },
+            velocity: Vector3 {
+                x: 0.0,
+                y: 0.0,
+                z: 0.0,
+            },
+            force_accum: Vector3 {
+                x: 0.0,
+                y: 0.0,
+                z: 0.0,
+            },
+            acceleration: Vector3 {
+                x: 0.0,
+                y: 0.0,
+                z: 0.0,
+            },
+        };
+        assert_eq!(false, q.has_finite_mass());
+    }
+
+    #[test]
+    fn test_particle1() {
+        let mut p = Particle::new(Vector3 {
+            x: 0.0,
+            y: 0.0,
+            z: 0.0,
+        });
+        assert_eq!(
+            p.position,
+            Vector3 {
+                x: 0.0,
+                y: 0.0,
+                z: 0.0
+            }
+        );
+        assert_eq!(
+            p.get_velocity(),
+            Vector3 {
+                x: 0.0,
+                y: 0.0,
+                z: 0.0
+            }
+        );
+        assert_eq!(p.get_mass(), 1.0);
+        let f = Vector3 {
+            x: 2.0,
+            y: 0.0,
+            z: 0.0,
+        };
+        p.add_force(&f);
+        p.integrate(1.0).unwrap();
+        assert_eq!(
+            Vector3 {
+                x: 2.0,
+                y: 0.0,
+                z: 0.0
+            },
+            p.velocity
+        );
+        assert_eq!(
+            Vector3 {
+                x: 0.0,
+                y: 0.0,
+                z: 0.0
+            },
+            p.position
+        );
+        p.add_force(&f);
+        p.integrate(1.0).unwrap();
+        assert_eq!(
+            Vector3 {
+                x: 4.0,
+                y: 0.0,
+                z: 0.0
+            },
+            p.velocity
+        );
+        assert_eq!(
+            Vector3 {
+                x: 2.0,
+                y: 0.0,
+                z: 0.0
+            },
+            p.position
+        );
+        p.integrate(1.0).unwrap();
+        assert_eq!(
+            Vector3 {
+                x: 4.0,
+                y: 0.0,
+                z: 0.0
+            },
+            p.velocity
+        );
+        assert_eq!(
+            Vector3 {
+                x: 6.0,
+                y: 0.0,
+                z: 0.0
+            },
+            p.position
+        );
+    }
+}

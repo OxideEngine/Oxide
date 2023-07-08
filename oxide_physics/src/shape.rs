@@ -6,14 +6,12 @@ pub trait Shape {
     fn local_bounding_volume(&self, tv: Vector3) -> AABB;
 }
 
-#[derive(Debug)]
-#[derive(PartialEq)]
+#[derive(Debug, PartialEq)]
 pub struct Ball {
     radius: f32,
 }
 
-#[derive(Debug)]
-#[derive(PartialEq)]
+#[derive(Debug, PartialEq)]
 // x, y, and z are the half-extent of the cuboid
 pub struct Cuboid {
     x: f32,
@@ -83,13 +81,31 @@ mod tests {
             x: 2.0,
             y: -4.0,
             z: 6.0,
-        }).unwrap();
-        assert_eq!(Cuboid {
-            x: 2.0,
-            y: 4.0,
-            z: 6.0,
-        }, cuboid);
-        assert_eq!(Vector3 { x: -2.0, y: -4.0, z: -6.0}, cuboid.mins());
-        assert_eq!(Vector3 { x: 2.0, y: 4.0, z: 6.0}, cuboid.maxs());
+        })
+        .unwrap();
+        assert_eq!(
+            Cuboid {
+                x: 2.0,
+                y: 4.0,
+                z: 6.0,
+            },
+            cuboid
+        );
+        assert_eq!(
+            Vector3 {
+                x: -2.0,
+                y: -4.0,
+                z: -6.0
+            },
+            cuboid.mins()
+        );
+        assert_eq!(
+            Vector3 {
+                x: 2.0,
+                y: 4.0,
+                z: 6.0
+            },
+            cuboid.maxs()
+        );
     }
 }

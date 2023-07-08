@@ -46,21 +46,46 @@ mod tests {
     #[test]
     fn test_ball_aabb() {
         let ball = Ball::new(4.0).unwrap();
-        let ball_aabb = ball.bounding_volume(Vector3 { x: 3.0, y: 4.0, z: 5.0 });
-        assert_eq!(ball_aabb, AABB {
-            mins: Vector3 { x: -1.0, y: 0.0, z: 1.0 },
-            maxs: Vector3 { x: 7.0, y: 8.0, z: 9.0 },
+        let ball_aabb = ball.bounding_volume(Vector3 {
+            x: 3.0,
+            y: 4.0,
+            z: 5.0,
         });
-        
+        assert_eq!(
+            ball_aabb,
+            AABB {
+                mins: Vector3 {
+                    x: -1.0,
+                    y: 0.0,
+                    z: 1.0
+                },
+                maxs: Vector3 {
+                    x: 7.0,
+                    y: 8.0,
+                    z: 9.0
+                },
+            }
+        );
     }
 
     #[test]
     fn test_local_aabb() {
         let ball = Ball::new(4.0).unwrap();
         let ball_aabb = ball.local_bounding_volume();
-        assert_eq!(ball_aabb, AABB {
-            mins: Vector3 { x: -4.0, y: -4.0, z: -4.0 },
-            maxs: Vector3 { x: 4.0, y: 4.0, z: 4.0 },
-        });
+        assert_eq!(
+            ball_aabb,
+            AABB {
+                mins: Vector3 {
+                    x: -4.0,
+                    y: -4.0,
+                    z: -4.0
+                },
+                maxs: Vector3 {
+                    x: 4.0,
+                    y: 4.0,
+                    z: 4.0
+                },
+            }
+        );
     }
 }
