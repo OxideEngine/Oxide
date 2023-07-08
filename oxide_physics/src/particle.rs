@@ -227,7 +227,7 @@ mod tests {
             panic!("{}", msg);
         }
         let f = Vector3 {
-            x: 2.0,
+            x: 10.0,
             y: 0.0,
             z: 0.0,
         };
