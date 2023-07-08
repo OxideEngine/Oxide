@@ -1,6 +1,8 @@
 use crate::collide_broad_phase::{BoundingVolume, HasBoundingVolume};
 use oxide_math::commons::vector3::Vector3;
 
+#[derive(Debug)]
+#[derive(PartialEq)]
 pub struct AABB {
     pub mins: Vector3,
     pub maxs: Vector3,
@@ -77,5 +79,49 @@ impl BoundingVolume for AABB {
                 z: self.maxs.z.max(other.maxs.z),
             },
         }
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use crate::shape::Ball;
+
+    #[test]
+    fn test_intersects() {
+        let ball = Ball::new(1.0).unwrap();
+        let ball_aabb0 = ball.local_bounding_volume();
+        let ball_aabb1 = ball.bounding_volume(Vector3 { x: 0.5, y: 0.5, z: 0.5 });
+        let ball_aabb2 = ball.bounding_volume(Vector3 { x: 1.5, y: 1.5, z: 1.5 });
+        let ball_aabb3 = ball.bounding_volume(Vector3 { x: 3.0, y: 1.0, z: 1.0 });
+        assert_eq!(true, ball_aabb0.intersects(&ball_aabb1));
+        assert_eq!(true, ball_aabb0.intersects(&ball_aabb2));
+        assert_eq!(false, ball_aabb0.intersects(&ball_aabb3));
+    }
+
+    #[test]
+    fn test_contains() {
+        let ball = Ball::new(1.0).unwrap();
+        let bigball = Ball::new(3.0).unwrap();
+        let ball_aabb0 = ball.local_bounding_volume();
+        let ball_aabb1 = ball.bounding_volume(Vector3 { x: 0.5, y: 0.5, z: 0.5 });
+        let ball_aabb2 = ball.bounding_volume(Vector3 { x: 1.5, y: 1.5, z: 1.5 });
+        let ball_aabb3 = ball.bounding_volume(Vector3 { x: 3.0, y: 1.0, z: 1.0 });
+        let bigball_aabb = bigball.local_bounding_volume();
+        assert_eq!(false, ball_aabb0.contains(&ball_aabb1));
+        assert_eq!(true, bigball_aabb.contains(&ball_aabb2));
+        assert_eq!(false, bigball_aabb.contains(&ball_aabb3));
+    }
+
+    #[test]
+    fn test_merged() {
+        let ball = Ball::new(1.0).unwrap();
+        let bigball = Ball::new(3.0).unwrap();
+        let ball_aabb = ball.bounding_volume(Vector3 { x: 3.0, y: 1.0, z: 1.0 });
+        let bigball_aabb = bigball.local_bounding_volume();
+        assert_eq!(ball_aabb.merged(&bigball_aabb), AABB {
+            mins: Vector3 { x: -3.0, y: -3.0, z: -3.0 },
+            maxs: Vector3 { x: 4.0, y: 3.0, z: 3.0 },
+        });
     }
 }
