@@ -35,23 +35,31 @@ pub struct ParticleForceRegistry {
 }
 
 impl ParticleForceRegistry {
-    pub fn add(&self, particle: DefaultParticleHandle, fg: DefaultForceGeneratorHandle) {
-        todo!()
+    pub fn add(
+        &self,
+        particle: DefaultParticleHandle,
+        fg: DefaultForceGeneratorHandle,
+    ) -> Result<Self, &str> {
+        todo!();
     }
 
-    pub fn remove(&self, particle: DefaultParticleHandle, fg: DefaultForceGeneratorHandle) {
-        todo!()
+    pub fn remove(
+        &self,
+        particle: DefaultParticleHandle,
+        fg: DefaultForceGeneratorHandle,
+    ) -> Result<Self, &str> {
+        todo!();
     }
 
-    pub fn clear(&self) {
-        todo!()
+    pub fn clear(&self) -> Result<Self, &str> {
+        todo!();
     }
 
     pub fn update_forces(&self, duration: f32) {
         // for i in self.registrations.iter_mut() {
         //     i.fg.update_force(i.particle, duration);
         // }
-        todo!()
+        todo!();
     }
 }
 
