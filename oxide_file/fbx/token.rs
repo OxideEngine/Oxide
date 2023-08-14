@@ -1,27 +1,33 @@
+#[derive(Debug)]
 pub struct Node {
-    end_offset: u32,
-    num_properties: u32,
-    property_list_len: u32,
-    name_len: u8,
-    name: Vec<char>,
-    properties: Vec<PropertyRecord>,
-    nested_list: NestedList,
+    pub end_offset: usize,
+    pub num_properties: u32,
+    pub property_list_len: u32,
+    pub name_len: u8,
+    pub name: String,
+    pub properties: Vec<PropertyRecord>,
+    pub nested_list: NestedList,
 }
 
-enum PropertyRecord {
+#[derive(Debug)]
+pub enum PropertyRecord {
     Primitive(PrimitivePropertyRecord),
     Array(ArrayPropertyRecord),
 }
 
+#[derive(Debug)]
 pub struct PrimitivePropertyRecord {
     type_code: PrimitiveTypeCode,
 }
+#[derive(Debug)]
 pub struct ArrayPropertyRecord {
     type_code: ArrayTypeCode,
 }
 
+#[derive(Debug)]
 pub struct NestedList {}
 
+#[derive(Debug)]
 enum PrimitiveTypeCode {
     TwoByteSignedInteger,
     OneBitBoolean,
@@ -31,6 +37,7 @@ enum PrimitiveTypeCode {
     EightByteSignedInteger,
 }
 
+#[derive(Debug)]
 enum ArrayTypeCode {
     FourByteSinglePrecisionIEEE754NumberArray,
     EightByteDoublePrecisionIEEE754NumberArray,
