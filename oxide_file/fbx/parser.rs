@@ -107,6 +107,7 @@ impl Parser {
         debug_print!(end_offset);
         debug_print!(num_properties);
         debug_print!(property_list_len);
+        debug_print!(name_len);
         debug_print!(name);
 
         Ok(Node {
