@@ -37,7 +37,7 @@ impl Parser {
         let file = File::open(target_filename)?;
         let mut reader = BufReader::new(file);
 
-        let mut file_magic = [0; 21];
+        let mut file_magic: [u8; 21] = [0; 21];
         reader.read_exact(&mut file_magic)?;
 
         if FILE_MAGIC != file_magic {
@@ -47,7 +47,7 @@ impl Parser {
             ));
         }
 
-        let mut unknown_bytes = [0; 2];
+        let mut unknown_bytes: [u8; 2] = [0; 2];
         reader.read_exact(&mut unknown_bytes)?;
 
         if UNKNOWN_BYTES != unknown_bytes {
@@ -57,7 +57,7 @@ impl Parser {
             ));
         }
 
-        let mut version = [0; 4];
+        let mut version: [u8; 4] = [0; 4];
         // NOTE: Just consume because we do not care about what version of FBX it is currently.
         reader.read_exact(&mut version)?;
 
