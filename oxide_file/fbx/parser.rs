@@ -1,12 +1,10 @@
-use std::any::type_name;
-use std::array::TryFromSliceError;
 use std::fs::File;
+use std::io::BufReader;
 use std::io::{self, Read};
-use std::io::{BufReader, Cursor};
 use std::path::Path;
 use std::string::FromUtf8Error;
 
-use crate::{debug_print, util};
+use crate::debug_print;
 
 use super::token::Node;
 
