@@ -55,6 +55,7 @@ mod parser {
             let mut parser = parser::Parser::new(Path::new("testdata/fbx/Cube.fbx")).unwrap();
 
             parser.read_node().unwrap();
+            panic!();
         }
     }
 }

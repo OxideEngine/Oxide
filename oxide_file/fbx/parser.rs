@@ -1,12 +1,12 @@
 use std::fs::File;
-use std::io::BufReader;
 use std::io::{self, Read};
+use std::io::{BufReader, Seek};
 use std::path::Path;
 use std::string::FromUtf8Error;
 
 use crate::debug_print;
 
-use super::token::Node;
+use super::token::{Node, PropertyRecord};
 
 const FILE_MAGIC: [u8; 21] = [
     75,  // `K`
@@ -80,6 +80,17 @@ pub struct Parser {
 }
 
 impl Parser {
+    pub fn read_property(&mut self) -> ParseResult<PropertyRecord> {
+        let mut type_code_raw: [u8; 1] = [0; 1];
+        self.reader.read_exact(&mut type_code_raw)?;
+
+        let type_code = char::from(type_code_raw[0]);
+
+        debug_print!(type_code);
+
+        todo!()
+    }
+
     pub fn read_node(&mut self) -> ParseResult<Node> {
         let mut end_offset_bytes: [u8; 4] = [0; 4];
         self.reader.read_exact(&mut end_offset_bytes)?;
@@ -102,11 +113,17 @@ impl Parser {
         self.reader.read_exact(&mut name_bytes)?;
         let name = std::string::String::from_utf8(name_bytes)?;
 
-        debug_print!(end_offset);
-        debug_print!(num_properties);
-        debug_print!(property_list_len);
-        debug_print!(name_len);
-        debug_print!(name);
+        let mut properties = vec![];
+        for _ in 0..property_list_len {
+            properties.push(self.read_property()?);
+        }
+
+        let mut nested_list = vec![];
+        while (self.reader.stream_position()? as usize) < end_offset {
+            nested_list.push(self.read_node()?);
+        }
+
+        debug_print!(nested_list);
 
         Ok(Node {
             end_offset,
@@ -114,8 +131,8 @@ impl Parser {
             property_list_len,
             name_len,
             name: name.to_string(),
-            properties: todo!(),
-            nested_list: todo!(),
+            properties,
+            nested_list,
         })
     }
 

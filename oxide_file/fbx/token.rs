@@ -6,7 +6,7 @@ pub struct Node {
     pub name_len: u8,
     pub name: String,
     pub properties: Vec<PropertyRecord>,
-    pub nested_list: NestedList,
+    pub nested_list: Vec<Node>,
 }
 
 #[derive(Debug)]
@@ -23,9 +23,6 @@ pub struct PrimitivePropertyRecord {
 pub struct ArrayPropertyRecord {
     type_code: ArrayTypeCode,
 }
-
-#[derive(Debug)]
-pub struct NestedList {}
 
 #[derive(Debug)]
 enum PrimitiveTypeCode {
