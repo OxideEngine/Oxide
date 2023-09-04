@@ -11,31 +11,40 @@ pub struct Node {
 
 #[derive(Debug)]
 pub enum PropertyRecord {
-    Primitive(PrimitivePropertyRecord),
+    Primitive(PrimitiveType),
     Array(ArrayPropertyRecord),
 }
 
 #[derive(Debug)]
-pub struct PrimitivePropertyRecord {
-    type_code: PrimitiveTypeCode,
+pub enum PrimitiveType {
+    TwoByteSignedInteger(TwoByteSignedInteger),
+    OneBitBoolean(OneBitBoolean),
+    FourByteSignedInteger(FourByteSignedInteger),
+    None,
 }
+
+#[derive(Debug)]
+pub struct FourByteSignedInteger {
+    pub data: i32,
+}
+
+#[derive(Debug)]
+pub struct OneBitBoolean {
+    pub data: bool,
+}
+
+#[derive(Debug)]
+pub struct TwoByteSignedInteger {
+    pub data: i16,
+}
+
 #[derive(Debug)]
 pub struct ArrayPropertyRecord {
     type_code: ArrayTypeCode,
 }
 
 #[derive(Debug)]
-enum PrimitiveTypeCode {
-    TwoByteSignedInteger,
-    OneBitBoolean,
-    FourByteSignedInteger,
-    FourByteSingePrecisionIEEE754Number,
-    EightByteDoublePrecisionIEEE754Number,
-    EightByteSignedInteger,
-}
-
-#[derive(Debug)]
-enum ArrayTypeCode {
+pub enum ArrayTypeCode {
     FourByteSinglePrecisionIEEE754NumberArray,
     EightByteDoublePrecisionIEEE754NumberArray,
     EightByteSignedIntegerArray,

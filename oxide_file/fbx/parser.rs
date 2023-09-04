@@ -6,7 +6,7 @@ use std::string::FromUtf8Error;
 
 use crate::debug_print;
 
-use super::token::{Node, PropertyRecord};
+use super::token::{self, Node, PrimitiveType, PropertyRecord};
 
 const FILE_MAGIC: [u8; 21] = [
     75,  // `K`
@@ -38,6 +38,7 @@ const UNKNOWN_BYTES: [u8; 2] = [0x1A, 0x00];
 pub enum ParseError {
     Io(std::io::Error),
     FromUtf8(FromUtf8Error),
+    UnknownTypeCode(char),
 }
 
 impl std::fmt::Display for ParseError {
@@ -45,6 +46,7 @@ impl std::fmt::Display for ParseError {
         match self {
             Self::Io(e) => write!(f, "{}", e),
             Self::FromUtf8(e) => write!(f, "{}", e),
+            _ => write!(f, "{}", self),
         }
     }
 }
@@ -77,6 +79,7 @@ where
 #[derive(Debug)]
 pub struct Parser {
     reader: BufReader<File>,
+    version: u32,
 }
 
 impl Parser {
@@ -84,11 +87,68 @@ impl Parser {
         let mut type_code_raw: [u8; 1] = [0; 1];
         self.reader.read_exact(&mut type_code_raw)?;
 
-        let type_code = char::from(type_code_raw[0]);
+        let type_code_char = char::from(type_code_raw[0]);
+        debug_print!(type_code_char);
 
-        debug_print!(type_code);
+        let property: PropertyRecord = match type_code_char {
+            'Y' => {
+                todo!()
+            }
+            'C' => {
+                todo!()
+            }
+            'I' => {
+                let mut buf: [u8; 4] = [0; 4];
+                self.reader.read_exact(&mut buf)?;
 
-        todo!()
+                let data = i32::from_le_bytes(buf);
+                debug_print!(data);
+
+                PropertyRecord::Primitive(PrimitiveType::FourByteSignedInteger(
+                    token::FourByteSignedInteger { data },
+                ))
+            }
+            'F' => {
+                todo!()
+            }
+            'D' => {
+                todo!()
+            }
+            'L' => {
+                todo!()
+            }
+            'f' => {
+                todo!()
+            }
+            'd' => {
+                todo!()
+            }
+            'l' => {
+                todo!()
+            }
+            'i' => {
+                todo!()
+            }
+            'b' => {
+                todo!()
+            }
+            'S' => {
+                todo!()
+            }
+            'R' => {
+                todo!()
+            }
+            _ => {
+                if type_code_raw[0] != 0x0a {
+                    let mut buf: [u8; 3] = [0; 3];
+                    self.reader.read_exact(&mut buf)?;
+                }
+
+                PropertyRecord::Primitive(PrimitiveType::None)
+            }
+        };
+
+        Ok(property)
     }
 
     pub fn read_node(&mut self) -> ParseResult<Node> {
@@ -113,14 +173,27 @@ impl Parser {
         self.reader.read_exact(&mut name_bytes)?;
         let name = std::string::String::from_utf8(name_bytes)?;
 
+        debug_print!(property_list_len);
+        debug_print!(name);
+
         let mut properties = vec![];
         for _ in 0..property_list_len {
             properties.push(self.read_property()?);
         }
 
         let mut nested_list = vec![];
-        while (self.reader.stream_position()? as usize) < end_offset {
+        while (self.reader.stream_position()? as usize) < end_offset - 13 {
             nested_list.push(self.read_node()?);
+        }
+
+        if self.version < 7500 {
+            let mut buf: [u8; 13] = [0; 13];
+            self.reader.read_exact(&mut buf)?;
+            debug_print!(buf);
+        } else {
+            let mut buf: [u8; 25] = [0; 25];
+            self.reader.read_exact(&mut buf)?;
+            debug_print!(buf);
         }
 
         debug_print!(nested_list);
@@ -156,10 +229,10 @@ impl Parser {
             );
         }
 
-        let mut version: [u8; 4] = [0; 4];
-        // NOTE: Just consume because we do not care about what version of FBX it is currently.
-        reader.read_exact(&mut version)?;
+        let mut version_bytes: [u8; 4] = [0; 4];
+        reader.read_exact(&mut version_bytes)?;
+        let version = u32::from_le_bytes(version_bytes);
 
-        Ok(Parser { reader })
+        Ok(Parser { reader, version })
     }
 }
